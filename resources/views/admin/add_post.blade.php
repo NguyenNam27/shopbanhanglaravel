@@ -16,7 +16,7 @@
                 <div class="panel-body">
 
                     <div class="position-center">
-                        <form role="form" action="" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{route('savepost')}}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên bài viết</label>
@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Từ khoá tìm kiếm</label>
-                                <input type="text" data-validation="length" data-validation-length="min10" data-validation-error-msg="Làm ơn điền ít nhất 5 ký tự" name="key_word" class="form-control " id="slug" placeholder="Tên bài viết" onkeyup="ChangeToSlug();">
+                                <input type="text" data-validation="length" data-validation-length="min5" data-validation-error-msg="Làm ơn điền ít nhất 5 ký tự" name="key_word" class="form-control " placeholder="Từ khoá tìm kiếm" >
                             </div>
 
                             <div class="form-group">

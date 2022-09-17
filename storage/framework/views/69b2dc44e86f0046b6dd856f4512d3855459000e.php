@@ -30,6 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="backend/js/jquery2.0.3.min.js"></script>
 <script src="backend/js/raphael-min.js"></script>
 <script src="backend/js/morris.js"></script>
+    <script type="text/javascript" src="backend/ckeditor/ckeditor.js"></script>
 
 </head>
 <body>
@@ -385,17 +386,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 
- <script type="text/javascript">
+ <script type="text/javascript" >
         $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
             CKEDITOR.replace('ckeditor');
-            CKEDITOR.replace('ckeditor1');
-            CKEDITOR.replace('ckeditor2');
-            CKEDITOR.replace('ckeditor3');
-            CKEDITOR.replace('id4');
-            CKEDITOR.replace('id5');
-            CKEDITOR.replace('ckeditor9');
+            CKEDITOR.replace('ckeditor1',{
+                filebrowserBrowseUrl: 'backend/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: 'backend/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+
+            CKEDITOR.replace('ckeditor2',{
+                filebrowserBrowseUrl: 'backend/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: 'backend/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+            CKEDITOR.replace('ckeditor3',{
+                filebrowserBrowseUrl: 'backend/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: 'backend/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+            CKEDITOR.replace('id4',{
+                filebrowserBrowseUrl: 'backend/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: 'backend/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+            CKEDITOR.replace('id5',{
+                filebrowserBrowseUrl: 'backend/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: 'backend/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+            CKEDITOR.replace('ckeditor9',{
+                filebrowserBrowseUrl: 'backend/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: 'backend/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
 
 
         })

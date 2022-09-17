@@ -61,11 +61,10 @@
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->slug }}</td>
                             <td>{{ $post->brand_name }}</td>
-                            <td><img src="" height="100" width="100"></td>
-                            <td>{{ $post->short_description}}</td>
+                            <td><img src="public/uploads/post/{{$post->image}}" height="100" width="100"></td>
+                            <td>{!! $post->short_description !!}</td>
 
                             <td>{{ $post->key_word }}</td>
-{{--                            <td>{{ $post->content }}</td>--}}
 
                             <td><span class="text-ellipsis">
               <?php
@@ -82,9 +81,9 @@
             </span></td>
 
                             <td>
-                                <a href="{{URL::to('/edit-product/'.$post->id)}}" class="active styling-edit" ui-toggle-class="">
+                                <a href="{{route('editpost',['id'=>$post->id])}}" class="active styling-edit" ui-toggle-class="">
                                     <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                <a onclick="return confirm('Bạn có chắc là muốn xóa sản phẩm này ko?')" href="{{URL::to('/delete-product/'.$post->id)}}" class="active styling-edit" ui-toggle-class="">
+                                <a onclick="return confirm('Bạn có chắc là muốn xóa bài viết này ko?')" href="{{URL::to('/delete-post/'.$post->id)}}" class="active styling-edit" ui-toggle-class="">
                                     <i class="fa fa-times text-danger text"></i>
                                 </a>
                             </td>

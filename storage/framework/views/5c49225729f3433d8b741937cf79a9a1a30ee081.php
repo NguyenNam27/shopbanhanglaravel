@@ -60,11 +60,10 @@
                             <td><?php echo e($post->title); ?></td>
                             <td><?php echo e($post->slug); ?></td>
                             <td><?php echo e($post->brand_name); ?></td>
-                            <td><img src="" height="100" width="100"></td>
-                            <td><?php echo e($post->short_description); ?></td>
+                            <td><img src="public/uploads/post/<?php echo e($post->image); ?>" height="100" width="100"></td>
+                            <td><?php echo $post->short_description; ?></td>
 
                             <td><?php echo e($post->key_word); ?></td>
-
 
                             <td><span class="text-ellipsis">
               <?php
@@ -81,9 +80,9 @@
             </span></td>
 
                             <td>
-                                <a href="<?php echo e(URL::to('/edit-product/'.$post->id)); ?>" class="active styling-edit" ui-toggle-class="">
+                                <a href="<?php echo e(route('editpost',['id'=>$post->id])); ?>" class="active styling-edit" ui-toggle-class="">
                                     <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                <a onclick="return confirm('Bạn có chắc là muốn xóa sản phẩm này ko?')" href="<?php echo e(URL::to('/delete-product/'.$post->id)); ?>" class="active styling-edit" ui-toggle-class="">
+                                <a onclick="return confirm('Bạn có chắc là muốn xóa bài viết này ko?')" href="<?php echo e(URL::to('/delete-post/'.$post->id)); ?>" class="active styling-edit" ui-toggle-class="">
                                     <i class="fa fa-times text-danger text"></i>
                                 </a>
                             </td>

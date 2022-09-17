@@ -78,7 +78,7 @@ class HomeController extends Controller
         return view('pages.sanpham.search')->with('category',$cate_product)->with('brand',$brand_product)->with('search_product',$search_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider);
 
     }
-    public function blog_index(Request $request){
+    public function blog_index(Request $request ){
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         //seo
@@ -89,9 +89,19 @@ class HomeController extends Controller
         //--seo
 
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
 
-        return view('pages.blog')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider); //1
+        $blog = DB::table('tbl_posts')->where([['post_status','0']])->orderBy('id','desc')->paginate(3);
+        return view('pages.blog')->with('blog',$blog)
+                                        ->with('brand',$brand_product)
+                                        ->with('meta_desc',$meta_desc)
+                                        ->with('meta_keywords',$meta_keywords)
+                                        ->with('meta_title',$meta_title)
+                                        ->with('url_canonical',$url_canonical)
+                                        ->with('slider',$slider)
+                                        ->with('category' ,$cate_product);
+
     }
     public function contact(Request $request){
 //slide

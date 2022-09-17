@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 26, 2020 lúc 07:11 PM
--- Phiên bản máy phục vụ: 10.1.40-MariaDB
--- Phiên bản PHP: 7.3.5
+-- Host: 127.0.0.1
+-- Generation Time: Sep 14, 2022 at 09:00 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,77 +18,133 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `elaravel`
+-- Database: `elaravel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_resets`
+-- Table structure for table `admin_roles`
+--
+
+CREATE TABLE `admin_roles` (
+  `id_admin_roles` int(11) NOT NULL,
+  `admin_admin_id` int(10) UNSIGNED NOT NULL,
+  `roles_id_roles` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin_roles`
+--
+
+INSERT INTO `admin_roles` (`id_admin_roles`, `admin_admin_id`, `roles_id_roles`) VALUES
+(30, 8, 3),
+(38, 2, 2),
+(39, 2, 3),
+(40, 2, 1),
+(49, 3, 3),
+(50, 3, 1),
+(51, 6, 2),
+(52, 6, 3),
+(53, 6, 1),
+(55, 8, 3),
+(59, 7, 2),
+(60, 7, 3),
+(61, 7, 1),
+(63, 9, 2),
+(64, 9, 3),
+(65, 9, 1),
+(66, 4, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 2),
+(3, '2021_10_21_221227_create_contacts_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_admin`
---
-
-CREATE TABLE `tbl_admin` (
-  `admin_id` int(10) UNSIGNED NOT NULL,
-  `admin_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_admin`
---
-
-INSERT INTO `tbl_admin` (`admin_id`, `admin_email`, `admin_password`, `admin_name`, `admin_phone`, `created_at`, `updated_at`) VALUES
-(1, 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'hieu tan', '0932023992', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tbl_brand`
+-- Table structure for table `tbl_brand`
 --
 
 CREATE TABLE `tbl_brand` (
   `brand_id` int(10) UNSIGNED NOT NULL,
   `brand_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `brand_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `brand_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brand_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `brand_status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_brand`
+-- Dumping data for table `tbl_brand`
 --
 
 INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `brand_slug`, `brand_desc`, `brand_status`, `created_at`, `updated_at`) VALUES
-(1, 'Sony', 'sony', 'Sony', 0, NULL, NULL),
-(2, 'Samsung', 'samsung', 'Samsung ok lắm ,xài rât ổn định', 0, NULL, NULL),
-(3, 'Dell', 'dell', 'Dell ok lắm dùng rất bền', 0, NULL, NULL);
+(1, 'Sony', 'sony', 'Sony là hãng công nghệ hàng đầu thế giới về thiết bị điện tử,gia dụng', 0, NULL, NULL),
+(2, 'Samsung', 'samsung', 'Samsung là hãng công nghệ hàng đầu thế giới về thiết bị điện tử,gia dụng', 0, NULL, NULL),
+(3, 'chanel', 'chanel', 'Chanel là hãng thời trang hàng đầu thế giới cung cấp mặc hàng thời trang và nước hoa,túi sách...', 0, NULL, NULL),
+(4, 'dior', 'dior', 'Dior là hãng thời trang hàng đầu thế giới cung cấp mặc hàng thời trang và nước hoa,túi sách...', 0, NULL, NULL),
+(5, 'Fahasa', 'fahasa', 'Fahasa là nhà sách lớn ,cung cấp các loại sách và thể loại sách mà các bạn cần học', 0, NULL, NULL),
+(6, 'Nhân văn', 'nhan-van', 'Nhân văn là nhà sách lớn ,cung cấp các loại sách và thể loại sách mà các bạn cần học', 0, NULL, NULL),
+(7, 'Pet shop', 'pet-shop', 'Pet shop là  thế giới phụ kiện và thức ăn nhập khẩu dành cho thú cưng', 0, NULL, NULL),
+(8, 'Mật pet family', 'mat-pet-family', 'Mật pet family là nơi cung cấp phụ kiện và dịch vụ cho thú cưng', 0, NULL, NULL),
+(24, 'Dell', 'dell', 'Chuyên sản phẩm chính hãng của dell', 0, '2021-09-30 09:34:59', '2021-09-30 09:34:59'),
+(25, 'Apple', 'apple', 'Vị trí thống trị của Apple trên thị trường máy tính bảng giúp công ty cũng áp đảo thị phần vi xử lý cho tablet.', 0, '2021-10-09 07:32:33', '2021-10-09 07:32:33');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_category_product`
+-- Table structure for table `tbl_category_product`
 --
 
 CREATE TABLE `tbl_category_product` (
-  `category_id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
   `meta_keywords` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug_category_product` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -100,20 +155,28 @@ CREATE TABLE `tbl_category_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_category_product`
+-- Dumping data for table `tbl_category_product`
 --
 
 INSERT INTO `tbl_category_product` (`category_id`, `meta_keywords`, `category_name`, `slug_category_product`, `category_desc`, `category_status`, `created_at`, `updated_at`) VALUES
-(1, 'xbox game,mua game xbox ,xbox 360', 'Xbox one', 'xbox-one', 'Xbox 360 là thế hệ thứ 2 của dòng máy chơi game console do Microsoft phát triển, cạnh tranh trực tiếp với Playstation 3 của Sony.', 0, NULL, NULL),
-(2, 'ps4,may choi game ps4', 'Máy PS4', 'may-ps4', 'PS4 là game cầm tay hay nhất mọi thời đại', 0, NULL, NULL),
-(3, 'tay cam ps4,tay cầm ps4', 'Tay cầm chơi game', 'tay-cam-choi-game', 'Tay cầm chơi game hạng nhất từ các hãng sản xuất số 1 hàng đầu châu mỹ', 0, NULL, NULL),
-(5, 'dia-ps4-gaming', 'Đĩa PS4 gaming', 'dia-ps4-gaming', 'Dia cd ps4', 0, NULL, NULL),
-(6, 'Màn hình gaming,gaming', 'Màn hình gaming', 'man-hinh-gaming', 'Màn hình gaming', 0, NULL, NULL);
+(1, 'Tay cầm chơi game', 'Tay cầm chơi game', 'tay-cam-choi-game', 'Tay cầm chơi game', 0, NULL, NULL),
+(2, 'may chơi game,may choi game,máy game,game chinh hãng,máy chơi game chính hãng', 'Máy chơi game', 'may-choi-game', 'Máy chơi game chính hãng nhập từ Mỹ,Úc,Nhật bản', 0, NULL, NULL),
+(3, 'Quần áo cho nam,quan ao nam,mua quan nam,bán quần nam', 'Quần áo cho nam', 'quan-ao-cho-nam', 'Quần áo cho nam nhập từ China ,Hàn quốc,việt nam', 0, NULL, NULL),
+(4, 'Quần áo cho nữ', 'Quần áo cho nữ', 'quan-ao-cho-nu', 'Quần áo cho nữ được nhập từ hàn quốc và nhật bản', 0, NULL, NULL),
+(5, 'sach kinh te,ban sach kinh te,bán sách kinh tế ,sách dạy làm giàu', 'Sách kinh tế', 'sach-kinh-te', 'Bán sách kinh tế dạy đầu tư chính khoáng,đầu tư bất động sản', 0, NULL, NULL),
+(6, 'Sách ngôn tình,sach ngon tinh,sach ngon tinh,sách dạy ngôn tình,sach ngon tinh chính thống', 'Sách ngôn tình', 'sach-ngon-tinh', 'Sách ngôn tình yêu đậm tính nhân văn và giáo dục', 0, NULL, NULL),
+(7, 'ba lo cho chó,ba lo cho chó,ba lo chó,ba lo cho chó mèo', 'Ba lô thú cưng', 'ba-lo-thu-cưng', 'Bán ba lô cho thú cưng nhập khẩu uy tín chất lượng', 0, NULL, NULL),
+(8, 'Thức ăn thú cưng,thuc an cho thu cung,thuc an thu cung,thu cung', 'Thức ăn cho thú cưng', 'thuc-an-cho-thu-cung', 'Bán thức ăn ngon chính hãng cho thú cưng của bạn', 0, NULL, NULL),
+(9, 'Điện thoại samsung,dien thoai samsung,samsung', 'Điện thoại samsung', 'dien-thoai-samsung', 'Điện thoại samsung', 0, NULL, NULL),
+(10, 'Thời trang nam', 'thời trang nam', 'thoi - trang - nam', '<p>thời thượng phong cách lịch lãm&nbsp;</p>', 1, NULL, NULL),
+(11, 'Sản phẩm Dell', 'Laptop dell chính hãng', 'laptop - dell - chinh - hang', '<p>Chuyên các sản phẩm chính hãng Dell &amp; giải pháp công nghệ trên toàn quốc. Máy tính xách tay, máy tính để bàn, máy tính chơi game, màn hình, máy trạm &amp; máy&nbsp;...</p>', 0, NULL, NULL),
+(12, 'Phụ kiện', 'Phụ kiên', 'phu - kien', '<p>Chất lượng đỉnh cao</p>', 0, NULL, NULL),
+(13, 'Điện Thoại', 'Điện thoại', 'dien - thoai', '<p>đẳng cấp&nbsp;</p>', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_coupon`
+-- Table structure for table `tbl_coupon`
 --
 
 CREATE TABLE `tbl_coupon` (
@@ -121,22 +184,24 @@ CREATE TABLE `tbl_coupon` (
   `coupon_name` varchar(150) NOT NULL,
   `coupon_time` int(50) NOT NULL,
   `coupon_condition` int(11) NOT NULL,
-  `coupon_number` int(11) NOT NULL,
-  `coupon_code` varchar(50) NOT NULL
+  `coupon_number` int(50) NOT NULL,
+  `coupon_code` varchar(50) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_coupon`
+-- Dumping data for table `tbl_coupon`
 --
 
-INSERT INTO `tbl_coupon` (`coupon_id`, `coupon_name`, `coupon_time`, `coupon_condition`, `coupon_number`, `coupon_code`) VALUES
-(1, 'Giảm giá 30/4', 10, 1, 10, 'HDH375Y'),
-(4, 'Giảm giá Covid', 5, 2, 100000, 'COVID99');
+INSERT INTO `tbl_coupon` (`coupon_id`, `coupon_name`, `coupon_time`, `coupon_condition`, `coupon_number`, `coupon_code`, `created_at`, `updated_at`) VALUES
+(1, 'Giảm giá 30/4', 10, 1, 10, 'HDH375Y', NULL, NULL),
+(6, 'Giảm giá Covid', 10, 2, 200000, 'COVID99', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_customers`
+-- Table structure for table `tbl_customers`
 --
 
 CREATE TABLE `tbl_customers` (
@@ -150,19 +215,23 @@ CREATE TABLE `tbl_customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_customers`
+-- Dumping data for table `tbl_customers`
 --
 
 INSERT INTO `tbl_customers` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `created_at`, `updated_at`) VALUES
-(4, 'Hiếu Tấn', 'tanhieu@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL),
 (5, 'Hoàng thị yến vi', 'yenvi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL),
 (6, 'Trương Ngọc Tấn Hiếu', 'hieu123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL),
-(7, 'Anh hieu dep giai 123', 'depgiai123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL);
+(7, 'Anh hieu dep giai 123', 'depgiai123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL),
+(8, 'Nguyen Nguyen', 'nguyenngocnam00770@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0975720527', NULL, NULL),
+(9, 'Nguyen Nguyen', 'nguyenngocnam00770@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0566762451', NULL, NULL),
+(10, 'Nguyen Nguyen', 'nguyenngocnam0077000@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0975720527', NULL, NULL),
+(11, 'Nguyen Nguyen', 'nguyenngocnam000@gmail.com', '25d55ad283aa400af464c76d713c07ad', '0566762451', NULL, NULL),
+(12, 'Nguyen Nguyen', 'nguyenngocnam10@gmail.com', '25d55ad283aa400af464c76d713c07ad', '0975720527', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_feeship`
+-- Table structure for table `tbl_feeship`
 --
 
 CREATE TABLE `tbl_feeship` (
@@ -174,20 +243,23 @@ CREATE TABLE `tbl_feeship` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_feeship`
+-- Dumping data for table `tbl_feeship`
 --
 
 INSERT INTO `tbl_feeship` (`fee_id`, `fee_matp`, `fee_maqh`, `fee_xaid`, `fee_feeship`) VALUES
-(1, 1, 1, 1, '50.000'),
+(1, 1, 1, 1, '50000'),
 (2, 1, 1, 16, '60000'),
 (3, 1, 2, 40, '150000'),
 (4, 2, 26, 712, '60000'),
-(5, 79, 760, 26734, '80000');
+(5, 79, 760, 26734, '80000'),
+(6, 8, 74, 2374, '15000'),
+(7, 77, 748, 26548, '60000'),
+(8, 1, 1, 6, '25000');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_order`
+-- Table structure for table `tbl_order`
 --
 
 CREATE TABLE `tbl_order` (
@@ -201,26 +273,17 @@ CREATE TABLE `tbl_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_order`
+-- Dumping data for table `tbl_order`
 --
 
 INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status`, `order_code`, `created_at`, `updated_at`) VALUES
-(6, 4, 7, 1, '3790e', '2020-05-01 05:53:31', NULL),
-(7, 4, 8, 1, '699d7', '2020-05-01 05:55:22', NULL),
-(8, 4, 9, 1, '346b1', '2020-05-01 05:57:42', NULL),
-(9, 4, 10, 1, 'b0374', '2020-05-01 06:01:54', NULL),
-(10, 4, 11, 1, '2c7fc', '2020-05-01 06:02:58', NULL),
-(11, 4, 12, 1, 'e8c05', '2020-05-01 06:04:51', NULL),
-(12, 4, 13, 1, 'baca3', '2020-05-01 06:05:59', NULL),
-(13, 4, 14, 1, 'a094f', '2020-05-01 06:07:20', NULL),
-(14, 5, 15, 2, '168cf', '2020-05-26 11:34:17', NULL),
-(15, 6, 16, 1, 'd8ba7', '2020-05-26 16:46:05', NULL),
-(16, 7, 17, 2, '9681f', '2020-05-26 16:55:17', NULL);
+(19, 10, 20, 1, '23916', '2022-09-09 13:26:15', NULL),
+(20, 12, 21, 2, 'b30a4', '2022-09-12 18:23:12', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_order_details`
+-- Table structure for table `tbl_order_details`
 --
 
 CREATE TABLE `tbl_order_details` (
@@ -237,56 +300,64 @@ CREATE TABLE `tbl_order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_order_details`
+-- Dumping data for table `tbl_order_details`
 --
 
 INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `product_coupon`, `product_feeship`, `created_at`, `updated_at`) VALUES
-(16, '3790e', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 2, 'COVID99', '50000', NULL, NULL),
-(17, '3790e', 10, 'Tay cầm chơi game PS4 màu đỏ', '60000', 2, 'COVID99', '50000', NULL, NULL),
-(18, '3790e', 9, 'Máy PS4 màu đỏ', '5000000', 1, 'COVID99', '50000', NULL, NULL),
-(19, '3790e', 7, 'Tay cầm chơi game PS4 màu đỏ', '60000', 2, 'COVID99', '50000', NULL, NULL),
-(20, '3790e', 8, 'Tay cầm chơi game PS4 màu trắng', '500000', 2, 'COVID99', '50000', NULL, NULL),
-(21, '699d7', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 2, 'COVID99', '50000', NULL, NULL),
-(22, '699d7', 10, 'Tay cầm chơi game PS4 màu đỏ', '60000', 6, 'COVID99', '50000', NULL, NULL),
-(23, '699d7', 9, 'Máy PS4 màu đỏ', '5000000', 4, 'COVID99', '50000', NULL, NULL),
-(24, '699d7', 7, 'Tay cầm chơi game PS4 màu đỏ', '60000', 3, 'COVID99', '50000', NULL, NULL),
-(25, '699d7', 8, 'Tay cầm chơi game PS4 màu trắng', '500000', 2, 'COVID99', '50000', NULL, NULL),
-(26, '346b1', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'HDH375Y', '10000', NULL, NULL),
-(27, '346b1', 12, 'Máy PS4 màu đỏ', '5000000', 1, 'HDH375Y', '10000', NULL, NULL),
-(28, 'b0374', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'no', '10000', NULL, NULL),
-(29, 'b0374', 10, 'Tay cầm chơi game PS4 màu đỏ', '60000', 1, 'no', '10000', NULL, NULL),
-(30, '2c7fc', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'no', '10000', NULL, NULL),
-(31, 'baca3', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'no', '10000', NULL, NULL),
-(32, 'baca3', 12, 'Máy PS4 màu đỏ', '5000000', 1, 'no', '10000', NULL, NULL),
-(33, 'a094f', 10, 'Tay cầm chơi game PS4 màu đỏ', '60000', 1, 'no', '10000', NULL, NULL),
-(34, 'a094f', 8, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'no', '10000', NULL, NULL),
-(35, '168cf', 14, 'Xbox 11233', '1500000', 1, 'COVID99', '50000', NULL, NULL),
-(36, '168cf', 12, 'Máy PS4 màu đỏ', '5000000', 1, 'COVID99', '50000', NULL, NULL),
-(37, '168cf', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'COVID99', '50000', NULL, NULL),
-(38, 'd8ba7', 2, 'Tay cầm chơi game PS4 màu trắng', '500000', 10, 'COVID99', '25000', NULL, NULL),
-(39, 'd8ba7', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 3, 'COVID99', '25000', NULL, NULL),
-(40, 'd8ba7', 14, 'Xbox 11233', '1500000', 5, 'COVID99', '25000', NULL, NULL),
-(41, 'd8ba7', 7, 'Tay cầm chơi game PS4 màu đỏ', '60000', 4, 'COVID99', '25000', NULL, NULL),
-(42, 'd8ba7', 9, 'Máy PS4 màu đỏ', '5006000', 8, 'COVID99', '25000', NULL, NULL),
-(43, '9681f', 2, 'Tay cầm chơi game PS4 màu trắng', '500000', 6, 'HDH375Y', '50000', NULL, NULL),
-(44, '9681f', 1, 'Tay cầm chơi game PS4 màu đỏ', '60000', 5, 'HDH375Y', '50000', NULL, NULL),
-(45, '9681f', 7, 'Tay cầm chơi game PS4 màu đỏ', '60000', 10, 'HDH375Y', '50000', NULL, NULL),
-(46, '9681f', 5, 'Tay cầm chơi game PS4 màu trắng', '500000', 5, 'HDH375Y', '50000', NULL, NULL);
+(47, '3fc48', 6, 'Royal Canin Urinary Canine Dog 2kg - Dành cho chó bị sỏi thận-10kg', '431000', 5, 'COVID99', '50000', NULL, NULL),
+(48, '3fc48', 7, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 3kg', '230000', 1, 'COVID99', '50000', NULL, NULL),
+(49, '3fc48', 8, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 7kg', '135000', 1, 'COVID99', '50000', NULL, NULL),
+(50, '1778b', 24, 'Sách ngôn tình hồ ly tinh', '500000', 1, 'HDH375Y', '60000', NULL, NULL),
+(51, '1778b', 22, 'Máy PS4 slim Mega pack 2', '7550000', 1, 'HDH375Y', '60000', NULL, NULL),
+(52, '1778b', 20, 'Áo Thun Nam Y2010 Basic AI08', '286000', 1, 'HDH375Y', '60000', NULL, NULL),
+(53, '1778b', 7, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 3kg', '230000', 1, 'HDH375Y', '60000', NULL, NULL),
+(54, '1778b', 6, 'Royal Canin Urinary Canine Dog 2kg - Dành cho chó bị sỏi thận-10kg', '431000', 1, 'HDH375Y', '60000', NULL, NULL),
+(55, '23916', 54, 'Điện thoại iPhone Xs Max 256GB', '15000000', 1, 'no', '25000', NULL, NULL),
+(56, '23916', 24, 'Sách ngôn tình hồ ly tinh', '500000', 2, 'no', '25000', NULL, NULL),
+(57, 'b30a4', 49, 'Điện thoại iPhone 13 Pro Max 128GB', '40000000', 1, 'no', '25000', NULL, NULL),
+(58, 'b30a4', 41, 'Điện thoại Samsung Galaxy A52s 5G', '11000000', 1, 'no', '25000', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_product`
+-- Table structure for table `tbl_posts`
+--
+
+CREATE TABLE `tbl_posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brand_id` int(10) UNSIGNED DEFAULT NULL,
+  `short_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key_word` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_posts`
+--
+
+INSERT INTO `tbl_posts` (`id`, `title`, `slug`, `brand_id`, `short_description`, `content`, `image`, `key_word`, `post_status`, `created_at`, `updated_at`) VALUES
+(8, 'Biến mình thành \'nô lệ\' khi chạy đua iPhone đời mới', '', 25, 'Biến mình thành \'nô lệ\' khi chạy đua iPhone đời mới', 'Biến mình thành \'nô lệ\' khi chạy đua iPhone đời mới', '', 'Biến mình thành \'nô lệ\' khi chạy đua iPhone đời mới', 0, '2022-09-12 15:57:52', '2022-09-12 15:57:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product`
 --
 
 CREATE TABLE `tbl_product` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_quantity` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_sold` int(11) NOT NULL,
+  `product_sold` int(11) DEFAULT NULL,
   `product_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `brand_id` int(11) NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
+  `brand_id` int(11) UNSIGNED NOT NULL,
   `product_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -297,28 +368,54 @@ CREATE TABLE `tbl_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_product`
+-- Dumping data for table `tbl_product`
 --
 
 INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_quantity`, `product_sold`, `product_slug`, `category_id`, `brand_id`, `product_desc`, `product_content`, `product_price`, `product_image`, `product_status`, `created_at`, `updated_at`) VALUES
-(1, 'Tay cầm chơi game PS4 màu đỏ', '5', 5, 'tay-cam-ps4-1', 3, 1, 'Tay cầm chơi game PS4 màu đỏ', 'Tay cầm chơi game PS4 màu đỏ', '60000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Đỏ-Dualshock-4-red-GameStation8.jpg', 0, NULL, NULL),
-(2, 'Tay cầm chơi game PS4 màu trắng', '44', 6, 'tay-cam-choi-game-ps4-mau-trang-1', 3, 1, 'Tay cầm chơi game PS4 màu trắng', 'Tay cầm chơi game PS4 màu trắng', '500000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Trắng-Dualshock-4-white-GameStation89.jpg', 0, NULL, NULL),
-(3, 'Máy PS4 màu đỏ', '30', 0, 'may-ps4-mau-do', 2, 1, 'Máy PS4 màu đỏ', 'Máy PS4 màu đỏ', '3500000', 'sony-tung-ra-thi-truong-may-ps4-pro-marvels-spider-man-phien-ban-gioi-han-anh-382.jpg', 0, NULL, NULL),
-(4, 'Tay cầm chơi game PS4 màu đỏ', '30', 0, 'tay-cam-ps4-2', 3, 1, 'Tay cầm chơi game PS4 màu đỏ', 'Tay cầm chơi game PS4 màu đỏ', '60000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Đỏ-Dualshock-4-red-GameStation8.jpg', 0, NULL, NULL),
-(5, 'Tay cầm chơi game PS4 màu trắng', '15', 5, 'tay-cam-choi-game-ps4-mau-trang-2', 3, 1, 'Tay cầm chơi game PS4 màu trắng', 'Tay cầm chơi game PS4 màu trắng', '500000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Trắng-Dualshock-4-white-GameStation89.jpg', 0, NULL, NULL),
-(6, 'Máy PS4 màu đỏ', '70', 0, 'may-ps4-mau-do', 2, 1, 'Máy PS4 màu đỏ', 'Máy PS4 màu đỏ', '5600000', 'sony-tung-ra-thi-truong-may-ps4-pro-marvels-spider-man-phien-ban-gioi-han-anh-382.jpg', 0, NULL, NULL),
-(7, 'Tay cầm chơi game PS4 màu đỏ', '70', 127, 'tay-cam-ps4-3', 3, 1, 'Tay cầm chơi game PS4 màu đỏ', 'Tay cầm chơi game PS4 màu đỏ', '60000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Đỏ-Dualshock-4-red-GameStation8.jpg', 0, NULL, NULL),
-(8, 'Tay cầm chơi game PS4 màu trắng', '50', 20, 'tay-cam-choi-game-ps4-mau-trang-3', 3, 1, 'Tay cầm chơi game PS4 màu trắng', 'Tay cầm chơi game PS4 màu trắng', '500000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Trắng-Dualshock-4-white-GameStation89.jpg', 0, NULL, NULL),
-(9, 'Máy PS4 màu đỏ', '30', 27, 'may-ps4-mau-do', 2, 1, 'Máy PS4 màu đỏ', 'Máy PS4 màu đỏ', '5006000', 'sony-tung-ra-thi-truong-may-ps4-pro-marvels-spider-man-phien-ban-gioi-han-anh-382.jpg', 0, NULL, NULL),
-(10, 'Tay cầm chơi game PS4 màu đỏ', '20', 30, 'tay-cam-ps4-4', 3, 1, 'Tay cầm chơi game PS4 màu đỏ', 'Tay cầm chơi game PS4 màu đỏ', '60000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Đỏ-Dualshock-4-red-GameStation8.jpg', 0, NULL, NULL),
-(11, 'Tay cầm chơi game PS4 màu trắng', '9', 11, 'tay-cam-choi-game-ps4-mau-trang-4', 3, 1, 'Tay cầm chơi game PS4 màu trắng', 'Tay cầm chơi game PS4 màu trắng', '500000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Trắng-Dualshock-4-white-GameStation89.jpg', 0, NULL, NULL),
-(12, 'Máy PS4 màu đỏ', '49', 1, 'may-ps4-mau-do', 2, 1, 'Máy PS4 màu đỏ', 'Máy PS4 màu đỏ', '5000000', 'sony-tung-ra-thi-truong-may-ps4-pro-marvels-spider-man-phien-ban-gioi-han-anh-382.jpg', 0, NULL, NULL),
-(14, 'Xbox 11233', '19', 1, 'xbox-1-1', 1, 1, '<p>dasdasd</p>', '<p>asdasd</p>', '1500000', '471937-microsoft-xbox-one-x69.jpg', 0, NULL, NULL);
+(6, 'Royal Canin Urinary Canine Dog 2kg - Dành cho chó bị sỏi thận-10kg', '40', 10, 'royal-canin-urinary-canine-dog-2kg-danh-cho-cho-bi-soi-than-10kg', 8, 7, '<p>&nbsp;</p>\r\n\r\n<p>Royal Canin Urinary Canine Dog 2kg - D&agrave;nh cho ch&oacute; bị sỏi thận</p>', '<p><strong>Nguy&ecirc;n liệu</strong></p>\r\n\r\n<p>Bột bắp, gạo, chất b&eacute;o động vật, protein gia cầm, gluten bắp, kho&aacute;ng chất, protein động vật, xơ thực vật, dầu đậu n&agrave;nh, dầu c&aacute;, fructo-oligo-sacarit, monoglycerit v&agrave; diglycerit của axit palmitic v&agrave; stearic từ phản ứng este h&oacute;a với axit citric, chiết xuất c&uacute;c vạn thọ (nguồn lutein).<br />\r\nNguồn protein: protein gia cầm, gluten bắp, protein động vật.</p>\r\n\r\n<p>Phụ gia dinh dưỡng: Vitamin A, Vitamin D3, E1(Sắt), E2 (I ốt), E4 (Đồng), E5 (Mangan), E6 (Kẽm), E8 (Selen), Chất axit h&oacute;a nước tiểu: Canxi Sunfat (0.88%). Chất chống oxi h&oacute;a.</p>\r\n\r\n<p><strong>Th&agrave;nh phần dinh dưỡng</strong></p>\r\n\r\n<p><img alt=\"\" src=\"https://www.petcity.vn/media/lib/4372_Thnhphndinhdng.jpg\" /></p>\r\n\r\n<p><strong>Đặc t&iacute;nh nổi bật</strong></p>\r\n\r\n<p><img alt=\"\" src=\"https://www.petcity.vn/media/lib/4372_ctnhnibt.jpg\" /></p>\r\n\r\n<p><strong>Khẩu phần ăn chuẩn</strong>&nbsp;</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.petcity.vn/media/lib/4372_Bngnthamkho.jpg\" /></p>', '431000', '8dcbd9462bb79e0494cc3a8272add3f632.jfif', 0, NULL, NULL),
+(7, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 3kg', '98', 2, 'thuc-an-cho-cho-nho-truong-thanh-farmina-nd-pumpkin-vi-heo-bi-ngo-va-tao-3kg', 8, 7, '<p>Thức ăn cho ch&oacute; nhỏ trưởng th&agrave;nh Farmina N&amp;D PUMPKIN vị heo, b&iacute; ng&ocirc; v&agrave; t&aacute;o 3kg</p>', '<h3>Farmina - N&amp;D PUMPKIN DOG boar, apple mini adult</h3>\r\n\r\n<p>(d&agrave;nh cho ch&oacute; nhỏ tr&ecirc;n 10 th&aacute;ng tuổi)</p>\r\n\r\n<p>Vị heo, b&iacute; ng&ocirc; v&agrave; t&aacute;o</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/78cb3d06-bf55-435e-bdf7-33be79a67da8\" width=\"250\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p><strong>Th&agrave;nh phần&nbsp;</strong></p>\r\n\r\n<p>Thịt lợn rừng kh&ocirc;ng xương (24%), protein thịt lợn mất nước (22%), tinh bột đậu (20%), mỡ g&agrave;, b&iacute; ng&ocirc; khử nước (5%), trứng khử nước, dầu c&aacute;, chất xơ thực vật, c&agrave; rốt kh&ocirc;, cỏ linh lăng kh&ocirc;, inulin, fructooligosacarit, mannanoligosacarit, t&aacute;o khử nước (0,5%), bột rau bina, psyllium (0,3%), bột lựu, bột blackcurrant, cam ngọt, nước ngọt , chondroitin sulphate, chiết xuất c&uacute;c vạn thọ (nguồn lutein)</p>', '230000', '8dcbd9462bb79e0494cc3a8272add3f660.jfif', 0, NULL, NULL),
+(8, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 7kg', '98', 2, 'thuc-an-cho-cho-nho-truong-thanh-farmina-nd-pumpkin-vi-heo-bi-ngo-va-tao-7kg', 8, 7, '<p>Thức ăn cho ch&oacute; nhỏ trưởng th&agrave;nh Farmina N&amp;D PUMPKIN vị heo, b&iacute; ng&ocirc; v&agrave; t&aacute;o 7kg</p>', '<h3>Farmina - N&amp;D PUMPKIN DOG boar, apple mini adult</h3>\r\n\r\n<p>(d&agrave;nh cho ch&oacute; nhỏ tr&ecirc;n 10 th&aacute;ng tuổi)</p>\r\n\r\n<p>Vị heo, b&iacute; ng&ocirc; v&agrave; t&aacute;o</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/78cb3d06-bf55-435e-bdf7-33be79a67da8\" width=\"250\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p><strong>Th&agrave;nh phần&nbsp;</strong></p>\r\n\r\n<p>Thịt lợn rừng kh&ocirc;ng xương (24%), protein thịt lợn mất nước (22%), tinh bột đậu (20%), mỡ g&agrave;, b&iacute; ng&ocirc; khử nước (5%), trứng khử nước, dầu c&aacute;, chất xơ thực vật, c&agrave; rốt kh&ocirc;, cỏ linh lăng kh&ocirc;, inulin, fructooligosacarit, mannanoligosacarit, t&aacute;o khử nước (0,5%), bột rau bina, psyllium (0,3%), bột lựu, bột blackcurrant, cam ngọt, nước ngọt , chondroitin sulphate, chiết xuất c&uacute;c vạn thọ (nguồn lutein)</p>', '135000', '8dcbd9462bb79e0494cc3a8272add3f613.jfif', 1, NULL, NULL),
+(9, 'Royal Canin Urinary Canine Dog 2kg - Dành cho chó bị sỏi thận', '60', NULL, 'royal-canin-urinary-canine-dog-2kg-danh-cho-cho-bi-soi-than', 8, 7, '<p>Royal Canin Urinary Canine Dog 2kg - D&agrave;nh cho ch&oacute; bị sỏi thận</p>', '<h3>Farmina - N&amp;D PUMPKIN DOG boar, apple mini adult</h3>\r\n\r\n<p>(d&agrave;nh cho ch&oacute; nhỏ tr&ecirc;n 10 th&aacute;ng tuổi)</p>\r\n\r\n<p>Vị heo, b&iacute; ng&ocirc; v&agrave; t&aacute;o</p>\r\n\r\n<p><strong>Th&agrave;nh phần&nbsp;</strong></p>\r\n\r\n<p>Thịt lợn rừng kh&ocirc;ng xương (24%), protein thịt lợn mất nước (22%), tinh bột đậu (20%), mỡ g&agrave;, b&iacute; ng&ocirc; khử nước (5%), trứng khử nước, dầu c&aacute;, chất xơ thực vật, c&agrave; rốt kh&ocirc;, cỏ linh lăng kh&ocirc;, inulin, fructooligosacarit, mannanoligosacarit, t&aacute;o khử nước (0,5%), bột rau bina, psyllium (0,3%), bột lựu, bột blackcurrant, cam ngọt, nước ngọt , chondroitin sulphate, chiết xuất c&uacute;c vạn thọ (nguồn lutein)</p>\r\n\r\n<p><strong>Bảng ăn tham khảo</strong></p>\r\n\r\n<p><img alt=\"\" src=\"https://www.petcity.vn/media/lib/4284_bngn.png\" /></p>', '450000', '48204202492cfcaf0daa78f7f5ad47c090.jfif', 0, NULL, NULL),
+(10, 'Thức ăn cho chó nhỏ trưởng thành Farmina - N&D PUMPKIN vị gà, bí ngô, công thức lựu', '100', NULL, 'thuc-an-cho-cho-nho-truong-thanh-farmina-nd-pumpkin-vi-ga-bi-ngo-cong-thuc-luu', 8, 7, '<p>Thức ăn cho ch&oacute; nhỏ trưởng th&agrave;nh Farmina - N&amp;D PUMPKIN vị g&agrave;, b&iacute; ng&ocirc;, c&ocirc;ng thức lựu&nbsp;</p>', '<h3>Farmina - N&amp;D PUMPKIN DOG chicken mini adult</h3>\r\n\r\n<p>(d&agrave;nh cho ch&oacute; nhỏ tr&ecirc;n 10 th&aacute;ng tuổi)</p>\r\n\r\n<p>Vị g&agrave;, b&iacute; ng&ocirc;, c&ocirc;ng thức lựu</p>\r\n\r\n<p><strong>Th&agrave;nh phần</strong></p>\r\n\r\n<p>G&agrave; kh&ocirc;ng xương (24%), protein g&agrave; mất nước (22%), tinh bột đậu (20%), mỡ g&agrave;, b&iacute; ng&ocirc; khử nước (5%), trứng khử nước, c&aacute; tr&iacute;ch, protein c&aacute; tr&iacute;ch mất nước, dầu c&aacute;, xơ thực vật, sấy kh&ocirc; c&agrave; rốt, cỏ linh lăng kh&ocirc;, inulin, fructooligosacarit, mannanoligosacarit, bột lựu (0,5%), t&aacute;o khử nước, bột rau bina, psyllium (0,3%), bột blackcurrant, cam kh&ocirc;, bột ngọt 0,2%), glucosamine, chondroitin sulphate, chiết xuất c&uacute;c vạn thọ (nguồn lutein)</p>\r\n\r\n<p><strong>Bảng ăn tham khảo</strong></p>\r\n\r\n<p>&nbsp;<img alt=\"\" src=\"https://www.petcity.vn/media/lib/4283_ntk.png\" /></p>', '125000', '48204202492cfcaf0daa78f7f5ad47c045.jfif', 0, NULL, NULL),
+(11, 'Thức ăn ướt Me-o Delite vị cá ngừ và thịt gà xé 70gr', '100', NULL, 'thuc-an-uot-me-o-delite-vi-ca-ngu-va-thit-ga-xe-70gr', 8, 7, '<p>Thức ăn ướt Me-o Delite vị c&aacute; ngừ v&agrave; thịt g&agrave; x&eacute; 70gr</p>', '<p><strong>Thức ăn ướt Me-o Delite vị c&aacute; ngừ v&agrave; thịt g&agrave; x&eacute;</strong></p>\r\n\r\n<p><strong>Nguy&ecirc;n Liệu Ch&iacute;nh:</strong>&nbsp;C&aacute; ngừ tươi, thịt g&agrave; x&eacute;, chất tạo đ&ocirc;ng, chất điều vị, taurin, c&aacute;c vitamin v&agrave; kho&aacute;ng chất.</p>\r\n\r\n<p><strong>Th&agrave;nh phần dinh dưỡng&nbsp;</strong></p>\r\n\r\n<p>Chất đạm : 8%</p>\r\n\r\n<p>Chất b&eacute;o : 0.3%&nbsp;</p>\r\n\r\n<p>Chất xơ : 1%</p>\r\n\r\n<p>Độ ẩm : 90%</p>\r\n\r\n<p><strong>Điểm nổi bật&nbsp;</strong></p>\r\n\r\n<ul>\r\n	<li>Được l&agrave;m từ c&aacute; thật</li>\r\n	<li>Taurine: Tăng cường hệ miễn dịch v&agrave; thị gi&aacute;c.</li>\r\n	<li>Biotin/ Zinc: Gi&uacute;p l&agrave;n da v&agrave; bộ long khỏe mạnh.</li>\r\n	<li>Vitamin C: Gi&uacute;p tăng cường hệ miễn dịch.</li>\r\n</ul>\r\n\r\n<p><strong>Bảo quản:</strong>&nbsp;Nơi kh&ocirc; r&aacute;o tho&aacute;ng m&aacute;t</p>', '25000', '2251_Whiskastunajunior85g11.jpg', 0, NULL, NULL),
+(12, 'Whiskas - Pate Tuna junior 85g', '90', NULL, 'whiskas-pate-tuna-junior-85g', 8, 7, '<p>Whiskas - Pate Tuna junior 85g</p>', '<p>Whiskas - Pate Tuna junior 85g</p>', '10000', '2251_Whiskastunajunior85g60.jpg', 0, NULL, NULL),
+(13, 'Súp thưởng Ciao vị cá ngừ và sò điệp cho mèo (14g*20)', '100', NULL, 'sup-thuong-ciao-vi-ca-ngu-va-so-diep-cho-meo-14g20', 8, 7, '<p>S&uacute;p thưởng Ciao vị c&aacute; ngừ v&agrave; s&ograve; điệp cho m&egrave;o (14g*20)</p>', '<p><strong>S&uacute;p thưởng Ciao vị c&aacute; ngừ v&agrave; s&ograve; điệp</strong></p>\r\n\r\n<p><strong>Th&agrave;nh phần</strong></p>\r\n\r\n<p>C&aacute; ngừ, s&ograve; điệp, tinh bột biến t&iacute;nh, chất tạo m&ugrave;i, Guar Gum, chiết xuất s&ograve; điệp, Vitamin E, Carrageenan, bột tr&agrave; xanh, Fructooligosaccharides.</p>\r\n\r\n<p><strong>Th&agrave;nh phần dinh dưỡng&nbsp;</strong></p>\r\n\r\n<p>Độ ẩm &le; 93,0 %; Protein th&ocirc; &ge; 7,0 %; B&eacute;o th&ocirc; &ge; 0,2 %; Xơ th&ocirc; &le; 1,0 %; Kho&aacute;ng tổng số &le; 2,0 %</p>\r\n\r\n<p><strong>Sử dụng</strong></p>\r\n\r\n<p>Cho ăn trực tiếp &ndash; D&ugrave;ng như b&aacute;nh thưởng.</p>\r\n\r\n<p>Khẩu phần: 56g/ ng&agrave;y.</p>\r\n\r\n<p>Sản phẩm n&agrave;y kh&ocirc;ng d&ugrave;ng thay thế bữa ăn ch&iacute;nh. Lu&ocirc;n giữ cung cấp nước sạch thường xuy&ecirc;n.</p>', '138000', '48204202492cfcaf0daa78f7f5ad47c050.jfif', 0, NULL, NULL),
+(14, 'Áo Thun Nam Y2010 Basic AI05', '60', NULL, 'ao-thun-nam-y2010-basic-ai05', 3, 3, '<p>&Aacute;o Thun Nam Y2010 Basic AI05</p>', '<h5>Tiết kiệm&nbsp;-37,000 đ</h5>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td>0019492001</td>\r\n			<td>Đen, M</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492002</td>\r\n			<td>Đen, L</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492003</td>\r\n			<td>Đen, XL</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại C</strong></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/dded5595-6630-4325-a8f7-dbc35a0b7bf6\" width=\"500\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p>&nbsp;</p>', '135000', '6c5e88f5f32c40aaff2901c03a05d62853.jfif', 0, NULL, NULL),
+(15, 'Áo Thun Nam Y2010 Basic AI01', '60', NULL, 'ao-thun-nam-y2010-basic-ai01', 3, 3, '<p>&Aacute;o Thun Nam Y2010 Basic AI05</p>', '<h5>Tiết kiệm&nbsp;-37,000 đ</h5>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td>0019492001</td>\r\n			<td>Đen, M</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492002</td>\r\n			<td>Đen, L</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492003</td>\r\n			<td>Đen, XL</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại C</strong></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/dded5595-6630-4325-a8f7-dbc35a0b7bf6\" width=\"500\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p>&nbsp;</p>', '145000', '6c5e88f5f32c40aaff2901c03a05d62886.jfif', 0, NULL, NULL),
+(16, 'Áo Thun Nam Y2010 Basic AI02', '70', NULL, 'ao-thun-nam-y2010-basic-ai02', 3, 5, '<p>&Aacute;o Thun Nam Y2010 Basic AI05</p>', '<h5>Tiết kiệm&nbsp;-37,000 đ</h5>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td>0019492001</td>\r\n			<td>Đen, M</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492002</td>\r\n			<td>Đen, L</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492003</td>\r\n			<td>Đen, XL</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại C</strong></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/dded5595-6630-4325-a8f7-dbc35a0b7bf6\" width=\"500\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p>&nbsp;</p>', '195000', '6c5e88f5f32c40aaff2901c03a05d62830.jfif', 0, NULL, NULL),
+(17, 'Áo Thun Nam Y2010 Basic AI03', '80', NULL, 'ao-thun-nam-y2010-basic-ai03', 3, 4, '<p>&Aacute;o Thun Nam Y2010 Basic AI05</p>', '<h5>Tiết kiệm&nbsp;-37,000 đ</h5>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td>0019492001</td>\r\n			<td>Đen, M</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492002</td>\r\n			<td>Đen, L</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492003</td>\r\n			<td>Đen, XL</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại C</strong></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/dded5595-6630-4325-a8f7-dbc35a0b7bf6\" width=\"500\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p>&nbsp;</p>', '295000', 'Áo44.jpg', 0, NULL, NULL),
+(18, 'Áo Thun Nam Y2010 Basic AI04', '80', NULL, 'ao-thun-nam-y2010-basic-ai04', 3, 5, '<p>&Aacute;o Thun Nam Y2010 Basic AI05</p>', '<h5>Tiết kiệm&nbsp;-37,000 đ</h5>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td>0019492001</td>\r\n			<td>Đen, M</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492002</td>\r\n			<td>Đen, L</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492003</td>\r\n			<td>Đen, XL</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại C</strong></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/dded5595-6630-4325-a8f7-dbc35a0b7bf6\" width=\"500\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p>&nbsp;</p>', '395000', '6c5e88f5f32c40aaff2901c03a05d62844.jfif', 0, NULL, NULL),
+(19, 'Áo Thun Nam Y2010 Basic AI06', '25', NULL, 'ao-thun-nam-y2010-basic-ai06', 3, 5, '<p>&Aacute;o Thun Nam Y2010 Basic AI05</p>', '<h5>Tiết kiệm&nbsp;-37,000 đ</h5>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td>0019492001</td>\r\n			<td>Đen, M</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492002</td>\r\n			<td>Đen, L</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492003</td>\r\n			<td>Đen, XL</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại C</strong></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/dded5595-6630-4325-a8f7-dbc35a0b7bf6\" width=\"500\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p>&nbsp;</p>', '285000', '6c5e88f5f32c40aaff2901c03a05d62864.jfif', 0, NULL, NULL),
+(20, 'Áo Thun Nam Y2010 Basic AI08', '36', NULL, 'ao-thun-nam-y2010-basic-ai08', 3, 5, '<p>&Aacute;o Thun Nam Y2010 Basic AI05</p>', '<h5>Tiết kiệm&nbsp;-37,000 đ</h5>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td>0019492001</td>\r\n			<td>Đen, M</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492002</td>\r\n			<td>Đen, L</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại CH</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>0019492003</td>\r\n			<td>Đen, XL</td>\r\n			<td><a href=\"javascript:void(0);\" title=\"\"><strong>37</strong>&nbsp;CH c&ograve;n</a></td>\r\n			<td>Sale đ&nbsp;<strong>148,000</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>B&aacute;n tại C</strong></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<figure class=\"easyimage easyimage-full\"><img alt=\"\" src=\"blob:http://localhost/dded5595-6630-4325-a8f7-dbc35a0b7bf6\" width=\"500\" />\r\n<figcaption></figcaption>\r\n</figure>\r\n\r\n<p>&nbsp;</p>', '286000', '6c5e88f5f32c40aaff2901c03a05d62865.jfif', 0, NULL, NULL),
+(21, 'Playstation 4 Pro 1TB USED', '60', NULL, 'playstation-4-pro-1tb-used', 2, 1, '<p>Playstation 4 Pro 1TB đ&atilde; qua sử dụng</p>\r\n\r\n<div class=\"ddict_btn\" style=\"left:185px; top:28px\"><img src=\"chrome-extension://bpggmmljdiliancllaapiggllnkbjocb/icon/16.png\" /></div>', '<table>\r\n	<thead>\r\n		<tr>\r\n			<td colspan=\"2\"><strong>CẤU H&Igrave;NH CHI TIẾT</strong></td>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>M&atilde; sản phẩm</td>\r\n			<td>CUH-7218B series</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Chi tiết CPU</td>\r\n			<td>x86-64 AMD &quot;Jaguar&quot;, 8 nh&acirc;n</td>\r\n		</tr>\r\n		<tr>\r\n			<td>GPU</td>\r\n			<td>4.20 TFLOPS, đồ họa nền tảng AMD Radeon</td>\r\n		</tr>\r\n		<tr>\r\n			<td>RAM</td>\r\n			<td>GDDR5 8GB</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Bộ nhớ trong</td>\r\n			<td>1TB</td>\r\n		</tr>\r\n	</tbody>\r\n	<thead>\r\n		<tr>\r\n			<td colspan=\"2\"><strong>KẾT NỐI DỮ LIỆU</strong></td>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>Ổ đĩa BD/DVD (chỉ đọc)</td>\r\n			<td>BD x 6 CAV, DVD x 8 CAV</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Đường v&agrave;o / ra</td>\r\n			<td>3x Cổng USB tốc độ cao (USB 3.1 thế hệ 1), 1x Cổng AUX</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Cổng ra AV</td>\r\n			<td>HDMI out port (hỗ trợ 4K/HDR), Cổng quang (OPTICAL port)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Kết nối mạng</td>\r\n			<td>C&aacute;p mạng Ethernet (10BASE-T, 100BASE-TX, 1000BASE-T)x1 Wi-Fi IEEE 802.11 a/b/g/n/ac. Bluetooth 4.0 (năng lượng thấp)</td>\r\n		</tr>\r\n	</tbody>\r\n	<thead>\r\n		<tr>\r\n			<td colspan=\"2\"><strong>TH&Ocirc;NG SỐ VẬT L&Yacute;</strong></td>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>M&agrave;u sắc sản phẩm</td>\r\n			<td>Jet Black</td>\r\n		</tr>\r\n		<tr>\r\n			<td>K&iacute;ch thước</td>\r\n			<td>295 x 55 x 327 mm (rộng x d&agrave;i x cao)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Trọng lượng</td>\r\n			<td>3.3 kg</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Nguồn điện</td>\r\n			<td>Xoay chiều, 100-240V, 50/60Hz</td>\r\n		</tr>\r\n		<tr>\r\n			<td>C&ocirc;ng suất ti&ecirc;u thụ</td>\r\n			<td>Tối đa 310W</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Nhiệt độ l&agrave;m việc</td>\r\n			<td>5&ordm;C - 35&ordm;C</td>\r\n		</tr>\r\n	</tbody>\r\n</table>', '6800000', '58def0d3c48742007c95371acc13ffa181.jfif', 0, NULL, NULL),
+(22, 'Máy PS4 slim Mega pack 2', '90', NULL, 'may-ps4-slim-mega-pack-2', 2, 1, '<p>M&aacute;y PS4 slim Mega pack 2</p>', '<p>M&aacute;y PS4 slim mega pack h&agrave;ng ch&iacute;nh h&atilde;ng Sony Việt Nam. Bảo h&agrave;nh h&atilde;ng 01 năm. Miễn ph&iacute; lắp đặt n&ocirc;i th&agrave;nh H&agrave; nội. Ship COD to&agrave;n quốc. Hỗ trợ trả g&oacute;p l&atilde;i xuất 0%</p>\r\n\r\n<p>Bộ sản phẩm gồm :</p>\r\n\r\n<p>- 01 bộ m&aacute;y PS4 slim ổ cứng 1T đời mới nhất cuh 2218 ( đ&atilde; c&oacute; 01 tay theo m&aacute;y )</p>\r\n\r\n<p>- 03 đĩa game mới nguy&ecirc;n seal: God of war 4, Horizon complete edition v&agrave; GTA 5</p>\r\n\r\n<p>KH&Ocirc;NG LẤY QU&Agrave; TẶNG VUI L&Ograve;NG INBOX SHOP HOẶC GỌI HOTLINE 0936011022</p>\r\n\r\n<p><img alt=\"Máy PS4 slim mega pack hàng chính hãng Sony Việt Nam\" src=\"https://bucket.nhanh.vn/store/24046/psCT/20191126/18323327/ps4_slim_mega_pack_.jpg\" /></p>', '7550000', 'Playstation-4-Slim-1TB-Mega-Pack-216.jpg', 0, NULL, NULL),
+(23, 'Combo Máy PS4 slim 1T kèm 2 tay và đĩa PES 20', '90', NULL, 'combo-may-ps4-slim-1t-kem-2-tay-va-dia-pes-20', 2, 1, '<p>Combo M&aacute;y PS4 slim 1T k&egrave;m 2 tay v&agrave; đĩa PES 20</p>', '<p>M&aacute;y Ps4 pro b&aacute;n bởi Hotgamestore - Đại l&yacute; ch&iacute;nh h&atilde;ng Playstation của Sony tại Việt Nam - l&agrave; m&aacute;y nhập khẩu ch&iacute;nh h&atilde;ng, bảo h&agrave;nh tại Trung t&acirc;m hỗ trợ bảo h&agrave;nh Sony to&agrave;n Việt Nam. M&aacute;y Ps4 pro được k&iacute;ch hoạt bảo h&agrave;nh ngay khi kh&aacute;ch h&agrave;ng&nbsp;mua m&aacute;y, qu&yacute; kh&aacute;ch kh&ocirc;ng cần bất cứ giấy tờ g&igrave; khi mang m&aacute;y Ps4 pro đi bảo h&agrave;nh .</p>', '8090000', '58def0d3c48742007c95371acc13ffa190.jfif', 0, NULL, NULL),
+(24, 'Sách ngôn tình hồ ly tinh', '10', 0, 'sach-ngon-tinh-ho-ly-tinh', 6, 6, '<p>S&aacute;ch ng&ocirc;n t&igrave;nh hồ ly tinh</p>', '<p>S&aacute;ch ng&ocirc;n t&igrave;nh hồ ly tinh&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '500000', 'holybietyeu6.jpg', 0, NULL, NULL),
+(36, 'samsung galaxy Z Fold3 5G', '05', NULL, 'samsung-galaxy-z-fold3-5g', 9, 2, 'Công nghệ hiện đại thời trang bắt mắt', '<p>Công nghệ hiện đại thời trang bắt mắt được sản xuất tại nhà máy samsung ,thi trường Việt Nam và quốc tế</p>', '9000000', 'Blacks43.png', 0, '2021-09-30 07:14:07', '2021-10-09 09:53:50'),
+(37, 'samsung Z Flip3 5G', '05', NULL, 'samsung-z-flip3-5g', 9, 2, 'Công nghệ hiện đại thời trang bắt mắt', '<p>samsung Z Flip3 5G</p>', '7000000', 'Blacks23.png', 0, '2021-09-30 07:35:43', '2021-10-09 09:54:49'),
+(38, 'Điện thoại Samsung Galaxy A22', '10', NULL, 'dien-thoai-samsung-galaxy-a22', 9, 2, 'đẹp đẽ', '<h3><strong><a href=\"https://www.thegioididong.com/samsung\" target=\"_blank\" title=\"Tham khảo các sản phẩm điện thoại Samsung tại Thế Giới Di Động\">&lt;p&gt;Sở hữu màn hình&nbsp; rộng 6.4 inch, Samsung Galaxy A22 luôn thu hút sự quan tâm của bất kỳ người tiêu dùng nào đang tìm kiếm tiêu chí này. Kích thước màn hình lớn là một ưu điểm để bạn trải nghiệm nhìn ngắm mọi thứ thoải mái hơn trong giải trí cũng như các thao tác hằng ngày.&amp;nbsp;&lt;/p&gt;</a></strong></h3>', '5800000', 'samsung-galaxy-a22-4g58.jpg', 0, '2021-09-30 09:18:52', '2021-09-30 09:18:52'),
+(39, 'Điện thoại Samsung Galaxy S21 Ultra 5G 128GB', '10', NULL, 'dien-thoai-samsung-galaxy-s21-ultra-5g-128gb', 9, 2, 'Công nghệ hiện đại thời trang bắt mắt', '<p>Không chỉ đơn thuần phục vụ giao tiếp và giải trí,&nbsp;<a href=\"https://www.thegioididong.com/dtdd/samsung-galaxy-s21-ultra\" rel=\"noopener\" target=\"_blank\" title=\"Tham khảo điện thoại Samsung Galaxy S21 Ultra 5G chính hãng tại Thế Giới Di Động\">Samsung Galaxy S21 Ultra 5G</a>&nbsp;còn chính là món phụ kiện thời trang khẳng định vị thế của người sở hữu. Vẻ ngoài mảnh mai và thon gọn đến bất ngờ chỉ 165.1 x 75.6 x 8.9 mm và trọng lượng 228 g dù phải “vác” một viên pin lớn.</p>', '30000000', 'samsung-galaxy-s21-ultra-bac6.jpg', 0, '2021-09-30 09:23:07', '2021-09-30 09:23:07'),
+(40, 'Điện thoại Samsung Galaxy Note 20', '10', NULL, 'dien-thoai-samsung-galaxy-note-20', 9, 2, 'Công nghệ hiện đại thời trang bắt mắt', '<p><a href=\"https://www.thegioididong.com/dtdd\" target=\"_blank\" title=\"Tham khảo điện thoại kinh doanh tại Thế Giới Di Động\">Điện thoại</a>&nbsp;sở hữu thiết kế khung kim loại chắc chắn, mặt lưng nhựa bóng bẩy, kiểu dáng mạnh mẽ với những góc cạnh vuông vức nhưng vẫn mang lại cảm giác cầm nắm thoải mái.</p>', '24000000', 'samsung-galaxy-note-20-062220-12220031.jpg', 0, '2021-09-30 09:29:46', '2021-09-30 09:29:46'),
+(41, 'Điện thoại Samsung Galaxy A52s 5G', '9', 1, 'dien-thoai-samsung-galaxy-a52s-5g', 9, 2, 'Công nghệ hiện đại thời trang bắt mắt', '<p>Samsung Galaxy A52s tiếp tục sử dụng ngôn ngữ thiết kế nguyên khối theo phong cách trẻ trung với các tuỳ chọn màu sắc như: Đen, trắng, tím và xanh mint.</p>', '11000000', 'samsung-galaxy-a52s-5g-violet24.jpg', 0, '2021-09-30 09:31:48', '2021-09-30 09:31:48'),
+(42, 'Laptop Dell Gaming G3 15 i7 10750H/16GB/512GB/6GB GTX1660Ti/120Hz/Win10 (P89F002BWH)', '10', NULL, 'laptop-dell-gaming-g3-15-i7-10750h16gb512gb6gb-gtx1660ti120hzwin10-p89f002bwh', 11, 24, 'Sang trọng, tinh tế, phong cách trẻ trung, hiện đại', '<p>Được đưa vào phân khúc laptop gaming,&nbsp;<a href=\"https://www.thegioididong.com/laptop-dell-gaming-g-series\" target=\"_blank\" title=\"Xem thêm laptop Dell Gaming đang kinh doanh tại Thế Giới Di Động\">Dell G3</a>&nbsp;vì thế trang bị vẻ ngoài cũng mang hơi hướng mạnh mẽ, cá tính, nhưng đủ tinh tế và rất sang trọng để người dùng có thể thoải mái mang theo sử dụng ở mọi nơi.</p>\r\n\r\n<p>Lớp vỏ nhựa màu trắng hiện đại, các đường vát góc cạnh rất tinh tế, ngoại hình chắc chắn, trọng lượng&nbsp;<strong>2.58 kg</strong>, độ dày&nbsp;<strong>30.96 mm</strong>&nbsp;không quá nhẹ nhưng cũng không quá khó khăn để mang kèm nó tới văn phòng, lớp học,…</p>', '32000000', '39966_20836_laptop_gaming_dell_g15_5515_p105f004cgr_460.jpg', 0, '2021-09-30 09:43:28', '2021-09-30 09:43:28'),
+(43, 'Laptop Dell Inspiron 7400 i5 1135G7/16GB/512GB/2GB MX350/Win10 (N4I5134W)', '10', NULL, 'laptop-dell-inspiron-7400-i5-1135g716gb512gb2gb-mx350win10-n4i5134w', 11, 24, 'Tận hưởng khung hình chân thật cùng âm thanh sống động', '<p>&nbsp;</p>\r\n\r\n<p><strong><a href=\"https://www.thegioididong.com/laptop-14-inch\" target=\"_blank\" title=\"Một số laptop có màn hình 14 inch đang kinh doanh tại thegioididong.com\">Màn hình 14 inch</a>&nbsp;c</strong>ùng độ phân giải&nbsp;<strong>QHD+&nbsp;(2560 x 1600)&nbsp;</strong>cho hình ảnh hiển thị chân thật, rõ nét ở cả trong nhà hay ngoài trời nhờ độ sáng màn hình&nbsp;<strong>300 nits</strong>.</p>\r\n\r\n<p>Hiển thị một cách chính xác và sắc nét các chi tiết của hình ảnh nhờ&nbsp;<a href=\"https://www.thegioididong.com/laptop-100-srgb\" target=\"_blank\" title=\"Xem thêm laptop trang bị màn hình 100% sRGB đang bán tại thegioididongcom\">màn hình 100% sRGB</a>, đồng thời giúp hạn chế tối đa sự khác biệt giữa hình ảnh hiển thị với thực tế.</p>', '3000000', '38906_60450_laptop_dell_inspiron_7400_84.png', 0, '2021-09-30 09:45:59', '2021-09-30 09:45:59'),
+(44, 'Laptop Dell Gaming G15 5515 R7 5800H/16GB/512GB/4GB RTX3050Ti/120Hz/Office H&S2019/Win10 (70258051)', '10', NULL, 'laptop-dell-gaming-g15-5515-r7-5800h16gb512gb4gb-rtx3050ti120hzoffice-hs2019win10-70258051', 11, 24, 'Công nghệ hiện đại thời trang bắt mắt', '<p>sở hữu bộ CPU&nbsp;<strong>AMD Ryzen 7</strong>&nbsp;<strong>5800H</strong>&nbsp;với tốc độ<strong>&nbsp;</strong>xung nhịp<strong>&nbsp;3.2 GHz</strong>&nbsp;và đạt tối đa nhờ Turbo Boost lên đến&nbsp;<strong>4.4 GHz</strong>&nbsp;đem đến tốc độ xử lý nhanh chóng ở mọi tác vụ công việc học tập văn phòng trên các phần mềm Word, Excel, PowerPoint,... cho đến đồ họa chuyên nghiệp và chơi game hoàn hảo.&nbsp;</p>', '21000000', '39966_20836_laptop_gaming_dell_g15_5515_p105f004cgr_438.jpg', 0, '2021-09-30 09:57:13', '2021-09-30 09:57:13'),
+(45, 'Laptop Dell Gaming G5 5500 i7 10750H/16GB/512GB/RTX 2070 8GB/15\"6FHD/Win 10', '10', NULL, 'laptop-dell-gaming-g5-5500-i7-10750h16gb512gbrtx-2070-8gb156fhdwin-10', 11, 24, 'Công nghệ hiện đại thời trang bắt mắt', '<p>Công nghệ hiện đại thời trang bắt mắt chính hãng từ dell</p>', '30000000', '637412887547131990_dell-vostro-v3405-den-179.png', 0, '2021-10-01 02:13:27', '2021-10-01 02:13:27'),
+(46, 'Laptop Dell Vostro V3405 R5 3500U/4GB/256GB/14\"FHD/Win 10', '10', NULL, 'laptop-dell-vostro-v3405-r5-3500u4gb256gb14fhdwin-10', 11, 24, 'Công nghệ hiện đại thời trang bắt mắt', '<p>Công nghệ hiện đại thời trang bắt mắt&nbsp;</p>', '17000000', '637412887547131990_dell-vostro-v3405-den-168.png', 0, '2021-10-01 02:17:37', '2021-10-01 02:17:37'),
+(47, 'Laptop Dell Gaming G15 5515 R7 5800H/8GB/512GB/4GB RTX3050/120H', '10', NULL, 'laptop - dell - gaming - g15 - 5515 - r7 - 5800h8gb512gb4gb - rtx3050120h', 1, 1, 'Trải nghiệm sự đẳng cấp đến từ con chip AMD Ryzen 7 mạnh mẽ cùng phong cách cá tính, độc đáo, Dell Gaming G15 5515 R7 (70258049) hứa hẹn sẽ là một sự lựa chọn hoàn hảo đáp ứng mọi nhu cầu thiết yếu của người dùng từ các tác vụ văn phòng cơ bản đến những ứng dụng đồ họa, giải trí chuyên nghiệp.', '<p>Trải nghiệm sự đẳng cấp đến từ con chip AMD Ryzen 7 mạnh mẽ cùng phong cách cá tính, độc đáo,Laptop Dell Gaming G15 5515 R7\"&amp;amp;amp;amp;gt;Dell Gaming G15 5515 R7 hứa hẹn sẽ là một sự lựa chọn hoàn hảo đáp ứng mọi nhu cầu thiết yếu của người dùng từ các tác vụ văn phòng cơ bản đến những ứng dụng đồ họa, giải trí chuyên nghiệp.</p>', '30000000', 'Laptop Dell Gaming G360.jfif', 0, '2021-10-09 03:48:58', '2021-11-02 04:42:31'),
+(48, 'Laptop Dell Gaming G3 15 i7 10750H/16GB/512GB/4GB GTX1650Ti/120Hz/Win10 (P89F002DBL)', '10', NULL, 'laptop-dell-gaming-g3-15-i7-10750h16gb512gb4gb-gtx1650ti120hzwin10-p89f002dbl', 11, 24, 'Bất bại trên mọi chiến trường cùng người cộng sự lý tưởng laptop Dell Gaming G3 15 i7 10750H (P89F002DBL) với sức mạnh hiệu năng đáng kinh ngạc cùng thiết kế hiện đại, hợp nhãn.', '<h3>Bất bại trên mọi chiến trường cùng người cộng sự lý tưởng Laptop Dell Gaming G3 15 i7 10750H/16GB/512GB/4GB GTX1650Ti/120Hz/Win10 (P89F002DBL)laptop Dell Gaming G3 15 i7 10750H (P89F002DBL)với sức mạnh hiệu năng đáng kinh ngạc cùng thiết kế hiện đại, hợp nhãn.</h3>', '25000000', 'Laptop Dell Gaming G361.jfif', 0, '2021-10-09 03:52:28', '2021-10-09 03:52:28'),
+(49, 'Điện thoại iPhone 13 Pro Max 128GB', '9', 1, 'dien-thoai-iphone-13-pro-max-128gb', 13, 25, 'iPhone 13 Pro Max 128GB - siêu phẩm được mong chờ nhất ở nửa cuối năm 2021 đến từ Apple. Máy có thiết kế không mấy đột phá khi so với người tiền nhiệm, bên trong đây vẫn là một sản phẩm có màn hình siêu đẹp, tần số quét được nâng cấp lên 120 Hz mượt mà, cảm biến camera có kích thước lớn hơn, cùng hiệu năng mạnh mẽ với sức mạnh đến từ Apple A15 Bionic, sẵn sàng cùng bạn chinh phục mọi thử thách. Thiết kế đẳng cấp hàng đầu', '<p>iPhone mới kế thừa thiết kế đặc trưng khi sở hữu khung viền vuông vức, mặt lưng kính cùng màn hình tai thỏ tràn viền nằm ở phía trước.Với iPhone 13 Pro Max phần tai thỏ đã được thu gọn lại 20% so với thế hệ trước, không chỉ giải phóng nhiều không gian hiển thị hơn mà còn giúp mặt trước trở nên hấp dẫn hơn mà vẫn đảm bảo được hoạt động của các cảm biến.</p>', '40000000', 'dien-thoai-iphone-13-mini-256gb-hong-123.jpg', 0, '2021-10-09 07:45:19', '2021-10-09 07:45:19'),
+(50, 'Điện thoại iPhone 13 256GB', '10', NULL, 'dien-thoai-iphone-13-256gb', 13, 25, 'Apple thỏa mãn sự chờ đón của iFan và người dùng với sự ra mắt của iPhone 13. Dù ngoại hình không có nhiều thay đổi so với iPhone 12 nhưng với cấu hình mạnh mẽ hơn, đặc biệt pin “trâu” hơn và khả năng quay phim chụp ảnh cũng ấn tượng hơn, hứa hẹn mang đến những trải nghiệm thú vị trên phiên bản mới này. Hiệu năng đột phá cùng bộ xử lý Apple A15 Bionic', '<p>Bộ vi xử lý<a href=\"https://www.thegioididong.com/hoi-dap/tim-hieu-chip-apple-a15-bionic-suc-manh-cuc-khung-duoc-he-1339072\" target=\"_blank\" title=\"Tìm hiểu thêm về bộ xử lý Apple A15 Bionic \">Apple A15</a>;mới gia tăng tốc độ CPU tới 50% và GPU đồ họa nhanh hơn 30% so với các đối thủ cạnh tranh trong cùng phân khúc, giúp iPhone 13 thể hiện sức mạnh khả năng xử lý ấn tượng hơn, mượt mà trên mọi tác vụ.So với bản tiền nhiệm, chipset này thể hiện tốc độ CPU cải tiến đến 40% và hiệu năng đồ họa nhảy vọt 80%, trong khi tiết kiệm điện năng hơn đến 15% nhờ được sản xuất trên tiến trình 5 nm cải tiến.</p>', '30000000', 'iphone-13-mini-red-1-600x60075.jpg', 0, '2021-10-09 07:49:22', '2021-10-09 07:49:22'),
+(51, 'Điện thoại iPhone 13 mini 256GB', '10', NULL, 'dien-thoai-iphone-13-mini-256gb', 13, 25, 'Apple đã chính thức giới thiệu đến người dùng cũng như iFan chiếc điện thoại với hàng loạt tính năng thông minh, từ con chip Apple A15 Bionic hiệu năng đầy mạnh mẽ đến thiết kế vô cùng sang trọng có tên là iPhone 13 mini. Hiệu năng đầy mạnh mẽ, bức phá mọi giới hạn', '<p>iPhone 13 mini sở hữu bộ vi xử lý Apple A15 Bionic 6 nhân được sản xuất trên tiến trình 5 nm giúp tiết kiệm năng lượng khoảng 15% so với dòng A14 Bionic trên iPhone 12 mini trước đó, đáp ứng đa dạng nhu cầu giải trí và làm việc của bạn.CPU 6 lõi tăng hiệu suất lên đến 40% và GPU cho hiệu suất đồ họa nhảy vọt đến 80% so với chipset trước đó, cho khả năng chơi game trơn tru, thực hiện mượt mà các tác vụ chỉnh sửa hình ảnh, cắt ghép video,...</p>', '25000000', 'dien-thoai-iphone-13-mini-256gb-hong-167.jpg', 0, '2021-10-09 07:52:02', '2021-10-09 07:52:02'),
+(52, 'Điện thoại iPhone 11 256GB', '10', NULL, 'dien-thoai-iphone-11-256gb', 13, 25, 'iPhone 11 256GB là chiếc máy có mức giá khá dễ chịu đến từ Apple. Nếu bạn không muốn bỏ ra số tiền quá lớn mà vẫn có được những nâng cấp về camera hay một hiệu năng đầy mạnh mẽ thì đây thực sự là một lựa chọn hàng đầu dành cho bạn. Hiệu năng vẫn tương đương phiên bản Pro Max', '<p>Mặc dù có mức giá rẻ hơn nhưng không vì vậy mà iPhone 11 bị cắt giảm đi về mặt cấu hình.</p>\r\n\r\n<p>Máy vẫn sẽ sở hữu cho mình con chip<a href=\"https://www.thegioididong.com/hoi-dap/tim-hieu-ve-chip-apple-a13-bionic-tren-iphone-11-n-1197492\" target=\"_blank\" title=\"Tìm hiểu về chip Apple A13 Bionic\" type=\"Tìm hiểu về chip Apple A13 Bionic\">Apple A13 Bionic</a>&nbsp;mạnh mẽ cùng 4 GB RAM tương đương với người anh em đắt tiền nhiệm <a href=\"https://www.thegioididong.com/dtdd/iphone-11-pro-max\" target=\"_blank\" title=\"Tham khảo điện thoại iPhone 11 Pro Max 64GB chính hãng\">iPhone 11 Pro Max</a>.</p>', '20000000', 'iphone-11-white18.jpg', 0, '2021-10-09 07:56:54', '2021-10-09 07:56:54'),
+(53, 'Điện thoại iPhone 12 64GB', '10', NULL, 'dien-thoai-iphone-12-64gb', 13, 25, 'Bài viết đánh giá Trong những tháng cuối năm 2020, Apple đã chính thức giới thiệu đến người dùng cũng như iFan thế hệ iPhone 12 series mới với hàng loạt tính năng bứt phá, thiết kế được lột xác hoàn toàn, hiệu năng đầy mạnh mẽ và một trong số đó chính là iPhone 12 64GB. Hiệu năng vượt xa mọi giới hạn', '<p>Apple đã trang bị con chip mới nhất của hãng (tính đến 11/2020) cho iPhone 12 đó là<a href=\"https://www.thegioididong.com/hoi-dap/tim-hieu-ve-chip-apple-a14-bionic-tren-iphone-12-va-ipad-1290695\" target=\"_blank\" title=\"Tìm hiểu chip A14 Bionic là gì?\">A14 Bionic</a>, được sản xuất trên tiến trình 5 nm với hiệu suất ổn định hơn so với chip A13 được trang bị trên phiên bản tiền nhiệm<a href=\"https://www.thegioididong.com/dtdd/iphone-11\" target=\"_blank\" title=\"Tham khảo điện thoại iPhone 11 chính hãng tại Thế Giới Di Động\">iPhone 11</a>.</p>\r\n\r\n<p>Với CPU Apple A14 Bionic, bạn có thể dễ dàng trải nghiệm mọi tựa game với những pha chuyển cảnh mượt mà hay hàng loạt hiệu ứng đồ họa tuyệt đẹp ở mức đồ họa cao mà không lo tình trạng giật lag.</p>', '20000000', 'iphone-12-xanh-duong-new-2-200x20054.jpg', 0, '2021-10-09 08:07:25', '2021-10-09 08:07:25'),
+(54, 'Điện thoại iPhone Xs Max 256GB', '10', 0, 'dien-thoai-iphone-xs-max-256gb', 13, 25, 'Bài viết đánh giá Sau 1 năm mong chờ, chiếc smartphone cao cấp nhất của Apple đã chính thức ra mắt mang tên iPhone Xs Max 256 GB. Máy các trang bị các tính năng cao cấp nhất từ chip A12 Bionic, dàn loa đa chiều cho tới camera kép tích hợp trí tuệ nhân tạo. Hiệu năng đỉnh cao cùng chip Apple A12', '<p>iPhone Xs Max được Apple trang bị cho con chip mới toanh hàng đầu của hãng mang tên<a href=\"https://www.thegioididong.com/tin-tuc/chi-tiet-chip-apple-a12-bionic-ben-trong-iphone-xs-xs-max-1116982\" target=\"_blank\" title=\"Tìm hiểu chip Apple A12\" type=\"Tìm hiểu chip Apple A12\">Apple A12</a>.</p>\r\n\r\n<p>Chip A12 Bionic được xây dựng trên tiến trình 7nm đầu tiên mà hãng sản xuất với 6 nhân đáp ứng vượt trội trong việc xử lý các tác vụ và khả năng tiết kiệm năng lượng tối ưu.</p>\r\n\r\n<p>Hơn nữa,&nbsp;chiếc&nbsp;<a href=\"https://www.thegioididong.com/dtdd-apple-iphone\" target=\"_blank\" title=\"Tham khảo các dòng điện thoại iPhone\" type=\"Tham khảo các dòng điện thoại iPhone\">điện thoại iPhone</a> còn có bộ xử lý đồ họa mạnh mẽ được Apple thiết kế riêng giúp hiệu năng được cải thiện rất lớn về mặt đồ họa của máy.</p>', '15000000', 'iphone-xs-max-256gb-3.jpg', 0, '2021-10-09 08:09:33', '2021-10-09 08:09:33'),
+(55, 'Điện thoại OPPO A55', '10', NULL, 'dien-thoai-oppo-a55', 13, 2, 'OPPO cho ra mắt OPPO A55 4G chiếc smartphone giá rẻ tầm trung có thiết kế đẹp mắt, cấu hình khá ổn, cụm camera chất lượng và dung lượng pin ấn tượng, mang đến một lựa chọn trải nghiệm thú vị vừa túi tiền cho người tiêu dùng.\r\nLớp “áo” đẹp mãn nhãn', 'OPPO cho ra mắt OPPO A55 4G chiếc smartphone giá rẻ tầm trung có thiết kế đẹp mắt, cấu hình khá ổn, cụm camera chất lượng và dung lượng pin ấn tượng, mang đến một lựa chọn trải nghiệm thú vị vừa túi tiền cho người tiêu dùng.\r\nLớp “áo” đẹp mãn nhãn\r\nOPPO A55 4G có 2 biến thể màu gồm Starry Black (đen) và Rainbow Blue (xanh). Thiết kế cong 3D cùng kích thước mỏng nhẹ, OPPO A55 4G vừa vặn trong tay người cầm, cho từng thao tác trải nghiệm thoải mái và chắc chắn.\r\n\r\nThiết kế 3D sang chảnh - OPPO A55 4G\r\n\r\nỞ bản màu Starry Black, mặt lưng sử dụng chất liệu nhựa nhám với bề mặt cực mịn, cho cảm giác cầm nắm chắc tay và hạn chế bám vân tay hoàn hảo. Bản màu Rainbow Blue là một sự sáng tạo của OPPO với mặt lưng sáng bóng có khả năng phản quang tốt tạo hiệu ứng màu sắc cầu vồng lung linh, đẹp mắt trên nền xanh trẻ trung.\r\n\r\n2 màu thời trang - OPPO A55 4G\r\n\r\nOPPO A55 4G có màn hình đục lỗ với cạnh viền siêu mỏng, tỷ lệ màn hình so với khung máy 89.2%, tạo không gian trải nghiệm đã mắt cho từng nội dung xem.\r\n\r\nMàn hình đục lỗ - OPPO A55 4G\r\n\r\nPhiên bản này được trang bị 2 tính năng mở khóa bảo mật bao gồm cảm biến vân tay ở cạnh viền và mở khóa khuôn mặt, mang đến cho bạn nhiều sự lựa chọn để mở khoá cùng khả năng bảo vệ tốt thông tin cá nhân của bạn.\r\n\r\nCảm biến vân tay - OPPO A55 4G\r\n\r\nCamera quay chụp thông minh\r\nCụm camera xếp dọc đặt nổi ở mặt sau thêm điểm nhấn cho thiết kế điện thoại, bao gồm camera chính cảm biến đến 50 MP, camera xoá phông 2 MP và camera macro chụp cận 2 MP.\r\n\r\nCụm camera xịn sò - OPPO A55 4G\r\n\r\nKhả năng thu sáng và lấy nét cực tốt từ camera chính giúp những bức ảnh mang tới độ tươi sáng, chân thực và sắc nét cao. Hoàn hảo hơn cả khi OPPO A55 4G còn hỗ trợ nhiều bộ lọc chụp đêm, giờ đây mỗi bức ảnh chụp đêm của bạn sẽ càng trở nên nổi bật hơn.\r\n\r\nẢnh chụp trên camera - OPPO A55 4G\r\n\r\nLàm mờ hậu cảnh, nổi bật chủ thể nhờ camera xoá phông với hiệu ứng bokeh sẽ làm cho bức ảnh có điểm nhấn hơn, cuốn hút hơn đầy nghệ thuật và thể hiện rõ nội dung mong muốn từ người chụp.\r\n\r\nCamera macro ghi lại những sự vật quen thuộc cách mới mẻ nhất, chụp cận sắc nét để phóng lớn mọi chi tiết, cho chúng trở nên hoành tráng, ấn tượng theo một cách độc đáo, thể hiện sự sáng tạo của bạn và sự độc đáo của tự nhiên.\r\n\r\nChụp cận - OPPO A55 4G\r\n\r\nCamera trước 16 MP với tính năng xóa phông, làm đẹp thông minh AI cho bạn thật nổi bật trong những bức ảnh selfie cùng phong thái tự tin, cuốn hút. Hỗ trợ quay phim Full HD để ghi lại những đoạn video sắc nét bằng cả camera trước và sau, gọi video chất lượng.\r\n\r\nMàn hình tràn viền cho trải nghiệm đã mắt hơn\r\nMàn hình trang bị tấm nền IPS LCD với kích thước 6.5 inch có thiết kế đục lỗ và viền siêu mỏng mang đến không gian trải nghiệm rộng lớn, thật thoải mái và đã mắt khi dùng máy chiến game hay thưởng thức các bộ phim trực tuyến.\r\n\r\nMàn hình tràn viền - OPPO A55 4G\r\n\r\nChất lượng khung hình tốt, chi tiết ổn đạt chuẩn HD+ (700 x 1600 Pixels), độ sáng màn hình tới 480 nits mang lại sự ổn định cao khi dùng ở các điều kiện chiếu sáng khác nhau. Khả năng tự cân chỉnh ánh sáng để màn hình hiển thị rõ nét, vừa mắt cả trong bóng râm, và không bị lóa mờ khi dùng dưới ánh nắng mặt trời.', '4490000', 'OPPO-A55-4G-1020x57084.jpg', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_quanhuyen`
+-- Table structure for table `tbl_quanhuyen`
 --
 
 CREATE TABLE `tbl_quanhuyen` (
@@ -329,7 +426,7 @@ CREATE TABLE `tbl_quanhuyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_quanhuyen`
+-- Dumping data for table `tbl_quanhuyen`
 --
 
 INSERT INTO `tbl_quanhuyen` (`maqh`, `name_quanhuyen`, `type`, `matp`) VALUES
@@ -1050,7 +1147,27 @@ INSERT INTO `tbl_quanhuyen` (`maqh`, `name_quanhuyen`, `type`, `matp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_shipping`
+-- Table structure for table `tbl_roles`
+--
+
+CREATE TABLE `tbl_roles` (
+  `id_roles` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_roles`
+--
+
+INSERT INTO `tbl_roles` (`id_roles`, `name`) VALUES
+(1, 'admin'),
+(2, 'author'),
+(3, 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_shipping`
 --
 
 CREATE TABLE `tbl_shipping` (
@@ -1066,40 +1183,42 @@ CREATE TABLE `tbl_shipping` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_shipping`
+-- Dumping data for table `tbl_shipping`
 --
 
 INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `shipping_notes`, `shipping_method`, `created_at`, `updated_at`) VALUES
-(17, 'Hieu Tấn', '245 Nguyễn Văn Khạ, Tân An Hội .Thị trấn Củ Chi,TPHCM', '0932023992', 'Hieu dep giai', 'Nhanh nha mày', 1, NULL, NULL);
+(17, 'Hieu Tấn', '245 Nguyễn Văn Khạ, Tân An Hội .Thị trấn Củ Chi,TPHCM', '0932023992', 'Hieu dep giai', 'Nhanh nha mày', 1, NULL, NULL),
+(18, 'Hieu tấn', '123/123', '0932023992', 'dsadas@gmail.com', 'dasdasdasdas', 1, NULL, NULL),
+(19, 'Hieu tấn', '123/123', '0932023992', 'dsadas@gmail.com', 'dasdasdasdas', 0, NULL, NULL),
+(20, 'Nam', 'HaNoi', '0975720527', 'nguyenngocnam00770@gmail.com', 'gửi nhanh', 1, NULL, NULL),
+(21, 'Nam', '121 Ngõ 255 Lĩnh Nam - Hoàng Mai - Hà Nội', '0975720527', 'nguyenngocnam10@gmail.com', 'aâ', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_slider`
+-- Table structure for table `tbl_slider`
 --
 
 CREATE TABLE `tbl_slider` (
   `slider_id` int(11) NOT NULL,
   `slider_name` varchar(255) NOT NULL,
   `slider_status` int(11) NOT NULL,
-  `slider_image` varchar(100) NOT NULL,
-  `slider_desc` varchar(100) NOT NULL
+  `slider_image` varchar(255) NOT NULL,
+  `slider_desc` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_slider`
+-- Dumping data for table `tbl_slider`
 --
 
 INSERT INTO `tbl_slider` (`slider_id`, `slider_name`, `slider_status`, `slider_image`, `slider_desc`) VALUES
-(1, 'Slider 1', 1, 'slider149.jpg', 'Thông tin khuyến mãi nạp thẻ game'),
-(2, 'Slider 1', 1, 'slider188.jpg', 'dasdasdasdasdasd'),
-(3, 'Slider 2', 1, 'slider275.jpg', 'dsadasdas'),
-(4, 'Slider 3', 0, 'slider318.jpg', 'dasdasdasd');
+(19, 'slide 1', 1, 'slide sss-163385644391.jpg', NULL),
+(20, 'slide2', 1, 'slide0-163663287369.jpg', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_social`
+-- Table structure for table `tbl_social`
 --
 
 CREATE TABLE `tbl_social` (
@@ -1110,17 +1229,19 @@ CREATE TABLE `tbl_social` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_social`
+-- Dumping data for table `tbl_social`
 --
 
 INSERT INTO `tbl_social` (`user_id`, `provider_user_id`, `provider`, `user`) VALUES
 (6, '221605442317143', 'facebook', 6),
-(13, '111257400060277532733', 'GOOGLE', 12);
+(13, '111257400060277532733', 'GOOGLE', 12),
+(14, '111264198467826812391', 'GOOGLE', 2),
+(15, '108162077516942840028', 'GOOGLE', 3);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_tinhthanhpho`
+-- Table structure for table `tbl_tinhthanhpho`
 --
 
 CREATE TABLE `tbl_tinhthanhpho` (
@@ -1130,7 +1251,7 @@ CREATE TABLE `tbl_tinhthanhpho` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_tinhthanhpho`
+-- Dumping data for table `tbl_tinhthanhpho`
 --
 
 INSERT INTO `tbl_tinhthanhpho` (`matp`, `name_city`, `type`) VALUES
@@ -1201,7 +1322,7 @@ INSERT INTO `tbl_tinhthanhpho` (`matp`, `name_city`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_xaphuongthitran`
+-- Table structure for table `tbl_xaphuongthitran`
 --
 
 CREATE TABLE `tbl_xaphuongthitran` (
@@ -1212,7 +1333,7 @@ CREATE TABLE `tbl_xaphuongthitran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_xaphuongthitran`
+-- Dumping data for table `tbl_xaphuongthitran`
 --
 
 INSERT INTO `tbl_xaphuongthitran` (`xaid`, `name_xaphuong`, `type`, `maqh`) VALUES
@@ -12390,201 +12511,274 @@ INSERT INTO `tbl_xaphuongthitran` (`xaid`, `name_xaphuong`, `type`, `maqh`) VALU
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `admin_id` int(10) UNSIGNED NOT NULL,
+  `admin_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admin_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admin_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admin_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`admin_id`, `admin_email`, `admin_password`, `admin_name`, `admin_phone`, `created_at`, `updated_at`) VALUES
+(4, 'hieutan567@gmail.com', '$2y$10$vL4ty1LAwIsZisnACz.1UudoqnLkUnHHOIa.MRxH.f5jNqkRJZLLe', 'hieutan567', '034567889', '2021-08-10 09:40:01', '2021-08-10 09:40:01'),
+(9, 'nguyenngocnam2700@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'nguyenngocnam', '0566762451', NULL, NULL);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `tbl_admin`
+-- Indexes for table `admin_roles`
 --
-ALTER TABLE `tbl_admin`
-  ADD PRIMARY KEY (`admin_id`);
+ALTER TABLE `admin_roles`
+  ADD PRIMARY KEY (`id_admin_roles`);
 
 --
--- Chỉ mục cho bảng `tbl_brand`
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
   ADD PRIMARY KEY (`brand_id`);
 
 --
--- Chỉ mục cho bảng `tbl_category_product`
+-- Indexes for table `tbl_category_product`
 --
 ALTER TABLE `tbl_category_product`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Chỉ mục cho bảng `tbl_coupon`
+-- Indexes for table `tbl_coupon`
 --
 ALTER TABLE `tbl_coupon`
   ADD PRIMARY KEY (`coupon_id`);
 
 --
--- Chỉ mục cho bảng `tbl_customers`
+-- Indexes for table `tbl_customers`
 --
 ALTER TABLE `tbl_customers`
   ADD PRIMARY KEY (`customer_id`);
 
 --
--- Chỉ mục cho bảng `tbl_feeship`
+-- Indexes for table `tbl_feeship`
 --
 ALTER TABLE `tbl_feeship`
   ADD PRIMARY KEY (`fee_id`);
 
 --
--- Chỉ mục cho bảng `tbl_order`
+-- Indexes for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
   ADD PRIMARY KEY (`order_id`);
 
 --
--- Chỉ mục cho bảng `tbl_order_details`
+-- Indexes for table `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
   ADD PRIMARY KEY (`order_details_id`);
 
 --
--- Chỉ mục cho bảng `tbl_product`
+-- Indexes for table `tbl_posts`
+--
+ALTER TABLE `tbl_posts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `posts_title_unique` (`title`),
+  ADD KEY `FK_tbl_post_brand` (`brand_id`);
+
+--
+-- Indexes for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
   ADD PRIMARY KEY (`product_id`);
 
 --
--- Chỉ mục cho bảng `tbl_quanhuyen`
+-- Indexes for table `tbl_quanhuyen`
 --
 ALTER TABLE `tbl_quanhuyen`
   ADD PRIMARY KEY (`maqh`);
 
 --
--- Chỉ mục cho bảng `tbl_shipping`
+-- Indexes for table `tbl_roles`
+--
+ALTER TABLE `tbl_roles`
+  ADD PRIMARY KEY (`id_roles`);
+
+--
+-- Indexes for table `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
   ADD PRIMARY KEY (`shipping_id`);
 
 --
--- Chỉ mục cho bảng `tbl_slider`
+-- Indexes for table `tbl_slider`
 --
 ALTER TABLE `tbl_slider`
   ADD PRIMARY KEY (`slider_id`);
 
 --
--- Chỉ mục cho bảng `tbl_social`
+-- Indexes for table `tbl_social`
 --
 ALTER TABLE `tbl_social`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Chỉ mục cho bảng `tbl_tinhthanhpho`
+-- Indexes for table `tbl_tinhthanhpho`
 --
 ALTER TABLE `tbl_tinhthanhpho`
   ADD PRIMARY KEY (`matp`);
 
 --
--- Chỉ mục cho bảng `tbl_xaphuongthitran`
+-- Indexes for table `tbl_xaphuongthitran`
 --
 ALTER TABLE `tbl_xaphuongthitran`
   ADD PRIMARY KEY (`xaid`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`admin_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `tbl_admin`
+-- AUTO_INCREMENT for table `admin_roles`
 --
-ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `admin_roles`
+  MODIFY `id_admin_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_brand`
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_category_product`
+-- AUTO_INCREMENT for table `tbl_category_product`
 --
 ALTER TABLE `tbl_category_product`
-  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `category_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_coupon`
+-- AUTO_INCREMENT for table `tbl_coupon`
 --
 ALTER TABLE `tbl_coupon`
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_customers`
+-- AUTO_INCREMENT for table `tbl_customers`
 --
 ALTER TABLE `tbl_customers`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_feeship`
+-- AUTO_INCREMENT for table `tbl_feeship`
 --
 ALTER TABLE `tbl_feeship`
-  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_order`
+-- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_order_details`
+-- AUTO_INCREMENT for table `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_product`
+-- AUTO_INCREMENT for table `tbl_posts`
+--
+ALTER TABLE `tbl_posts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_shipping`
+-- AUTO_INCREMENT for table `tbl_roles`
+--
+ALTER TABLE `tbl_roles`
+  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_slider`
+-- AUTO_INCREMENT for table `tbl_slider`
 --
 ALTER TABLE `tbl_slider`
-  MODIFY `slider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `slider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT cho bảng `tbl_social`
+-- AUTO_INCREMENT for table `tbl_social`
 --
 ALTER TABLE `tbl_social`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tbl_posts`
+--
+ALTER TABLE `tbl_posts`
+  ADD CONSTRAINT `FK_tbl_post_brand` FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand` (`brand_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

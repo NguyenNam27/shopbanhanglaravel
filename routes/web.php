@@ -159,6 +159,14 @@ Route::get('/all-post','BlogController@all_post')->name('allpost');
 Route::get('/unactive-post/{id}','BlogController@unactive_post');
 Route::get('/active-post/{id}','BlogController@active_post');
 Route::get('/add-post','BlogController@add_post')->name('addpost');
+Route::get('/edit-post/{id}','BlogController@edit_post')->name('editpost');
+
+Route::post('/save-post','BlogController@save_post')->name('savepost');
+Route::post('/update-post/{id}','BlogController@update_post')->name('updatepost');
+Route::get('/delete-post/{id}','BlogController@delete_post');
+
+
+
 
 
 

@@ -55,10 +55,10 @@ class ProductController extends Controller
         $get_image = $request->file('product_image');
 
         if($get_image){
-            $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.',$get_name_image));
-            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/uploads/product',$new_image);
+            $get_name_image = $get_image->getClientOriginalName();//lấy tên file ảnh
+            $name_image = current(explode('.',$get_name_image));//lấy tên ảnh
+            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();//lấy tên ảnh mới
+            $get_image->move('public/uploads/product',$new_image);//chuyển hình ảnh vào thư mục với đường dẫn
             $data['product_image'] = $new_image;
             DB::table('tbl_product')->insert($data);
             Session::put('message','Thêm sản phẩm thành công');
@@ -106,7 +106,7 @@ class ProductController extends Controller
         $data['brand_id'] = $request->product_brand;
         $data['product_status'] = $request->product_status;
         $get_image = $request->file('product_image');
-
+        
         if($get_image){
                     $get_name_image = $get_image->getClientOriginalName();
                     $name_image = current(explode('.',$get_name_image));

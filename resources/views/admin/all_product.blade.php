@@ -13,7 +13,7 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-default">Apply</button>
+        <button class="btn btn-sm btn-default">Lọc</button>
       </div>
       <div class="col-sm-4">
       </div>
@@ -49,9 +49,7 @@
             <th>Hình sản phẩm</th>
             <th>Danh mục</th>
             <th>Thương hiệu</th>
-
             <th>Hiển thị</th>
-
             <th style="width:30px;"></th>
           </tr>
         </thead>
