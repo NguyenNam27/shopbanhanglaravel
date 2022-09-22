@@ -4,19 +4,12 @@
             <?php $__currentLoopData = $blog; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="single-blog-post">
 
-               <a href=""><h2><?php echo e($blog1->title); ?></h2></a>
+               <a href="<?php echo e(route('detail_post',['slug'=>$blog1->slug])); ?>"><h2><?php echo e($blog1->title); ?></h2></a>
                 <div class="post-meta">
                     <ul>
                         <li><i class="fa fa-user"></i> <?php echo e($blog1->created_at); ?></li>
 
                     </ul>
-
-
-
-
-
-
-
                 </div>
                 <a href="">
                     <img src="public/uploads/post/<?php echo e($blog1->image); ?>" alt="" width="50%">

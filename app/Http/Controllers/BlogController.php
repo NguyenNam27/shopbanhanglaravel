@@ -120,4 +120,5 @@ class BlogController extends Controller
         Session::put('message','Xóa bài viết thành công');
         return redirect()->route('allpost');
     }
+    
 }

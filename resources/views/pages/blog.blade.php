@@ -5,19 +5,12 @@
             @foreach($blog as $blog1)
             <div class="single-blog-post">
 
-               <a href=""><h2>{{$blog1->title}}</h2></a>
+               <a href="{{route('detail_post',['slug'=>$blog1->slug])}}"><h2>{{$blog1->title}}</h2></a>
                 <div class="post-meta">
                     <ul>
                         <li><i class="fa fa-user"></i> {{$blog1->created_at}}</li>
 
                     </ul>
-{{--                    <span>--}}
-{{--										<i class="fa fa-star"></i>--}}
-{{--										<i class="fa fa-star"></i>--}}
-{{--										<i class="fa fa-star"></i>--}}
-{{--										<i class="fa fa-star"></i>--}}
-{{--										<i class="fa fa-star-half-o"></i>--}}
-{{--								</span>--}}
                 </div>
                 <a href="">
                     <img src="public/uploads/post/{{$blog1->image}}" alt="" width="50%">

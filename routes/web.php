@@ -18,6 +18,9 @@ Route::get('/tin-tuc','HomeController@blog_index')->name('tintuc');
 Route::get('/lien-he','HomeController@contact')->name('lienhe');
 Route::post('/tim-kiem','HomeController@search');
 
+Route::get('/details_post/{slug}','HomeController@post_detail')->name('detail_post');
+
+
 //Danh muc san pham trang chu
 Route::get('/danh-muc/{slug_category_product}','CategoryProduct@show_category_home');
 Route::get('/thuong-hieu/{brand_slug}','BrandProduct@show_brand_home');
@@ -160,7 +163,6 @@ Route::get('/unactive-post/{id}','BlogController@unactive_post');
 Route::get('/active-post/{id}','BlogController@active_post');
 Route::get('/add-post','BlogController@add_post')->name('addpost');
 Route::get('/edit-post/{id}','BlogController@edit_post')->name('editpost');
-
 Route::post('/save-post','BlogController@save_post')->name('savepost');
 Route::post('/update-post/{id}','BlogController@update_post')->name('updatepost');
 Route::get('/delete-post/{id}','BlogController@delete_post');

@@ -36,7 +36,7 @@ class OrderController extends Controller
 		$order->save();
 		if($order->order_status==2){
 			foreach($data['order_product_id'] as $key => $product_id){
-				
+
 				$product = Product::find($product_id);
 				$product_quantity = $product->product_quantity;
 				$product_sold = $product->product_sold;
@@ -51,7 +51,7 @@ class OrderController extends Controller
 			}
 		}elseif($order->order_status!=2 && $order->order_status!=3){
 			foreach($data['order_product_id'] as $key => $product_id){
-				
+
 				$product = Product::find($product_id);
 				$product_quantity = $product->product_quantity;
 				$product_sold = $product->product_sold;
@@ -71,7 +71,7 @@ class OrderController extends Controller
 	public function print_order($checkout_code){
 		$pdf = \App::make('dompdf.wrapper');
 		$pdf->loadHTML($this->print_order_convert($checkout_code));
-		
+
 		return $pdf->stream();
 	}
 	public function print_order_convert($checkout_code){
@@ -106,7 +106,7 @@ class OrderController extends Controller
 			$coupon_number = 0;
 
 			$coupon_echo = '0';
-		
+
 		}
 
 		$output = '';
@@ -121,7 +121,7 @@ class OrderController extends Controller
 			border:1px solid #000;
 		}
 		</style>
-		<h1><centerCông ty TNHH một thành viên ABCD</center></h1>
+		<h1><center>Công ty TNHH một thành viên ABCD</center></h1>
 		<h4><center>Độc lập - Tự do - Hạnh phúc</center></h4>
 		<p>Người đặt hàng</p>
 		<table class="table-styling">
@@ -133,19 +133,19 @@ class OrderController extends Controller
 					</tr>
 				</thead>
 				<tbody>';
-				
-		$output.='		
+
+		$output.='
 					<tr>
 						<td>'.$customer->customer_name.'</td>
 						<td>'.$customer->customer_phone.'</td>
 						<td>'.$customer->customer_email.'</td>
-						
-					</tr>';
-				
 
-		$output.='				
+					</tr>';
+
+
+		$output.='
 				</tbody>
-			
+
 		</table>
 
 		<p>Ship hàng tới</p>
@@ -160,21 +160,21 @@ class OrderController extends Controller
 					</tr>
 				</thead>
 				<tbody>';
-				
-		$output.='		
+
+		$output.='
 					<tr>
 						<td>'.$shipping->shipping_name.'</td>
 						<td>'.$shipping->shipping_address.'</td>
 						<td>'.$shipping->shipping_phone.'</td>
 						<td>'.$shipping->shipping_email.'</td>
 						<td>'.$shipping->shipping_notes.'</td>
-						
-					</tr>';
-				
 
-		$output.='				
+					</tr>';
+
+
+		$output.='
 				</tbody>
-			
+
 		</table>
 
 		<p>Đơn hàng đặt</p>
@@ -190,7 +190,7 @@ class OrderController extends Controller
 					</tr>
 				</thead>
 				<tbody>';
-			
+
 				$total = 0;
 
 				foreach($order_details_product as $key => $product){
@@ -202,9 +202,9 @@ class OrderController extends Controller
 						$product_coupon = $product->product_coupon;
 					}else{
 						$product_coupon = 'không mã';
-					}		
+					}
 
-		$output.='		
+		$output.='
 					<tr>
 						<td>'.$product->product_name.'</td>
 						<td>'.$product_coupon.'</td>
@@ -212,7 +212,7 @@ class OrderController extends Controller
 						<td>'.$product->product_sales_quantity.'</td>
 						<td>'.number_format($product->product_price,0,',','.').'đ'.'</td>
 						<td>'.number_format($subtotal,0,',','.').'đ'.'</td>
-						
+
 					</tr>';
 				}
 
@@ -230,9 +230,9 @@ class OrderController extends Controller
 					<p>Thanh toán : '.number_format($total_coupon + $product->product_feeship,0,',','.').'đ'.'</p>
 				</td>
 		</tr>';
-		$output.='				
+		$output.='
 				</tbody>
-			
+
 		</table>
 
 		<p>Ký tên</p>
@@ -241,14 +241,14 @@ class OrderController extends Controller
 					<tr>
 						<th width="200px">Người lập phiếu</th>
 						<th width="800px">Người nhận</th>
-						
+
 					</tr>
 				</thead>
 				<tbody>';
-						
-		$output.='				
+
+		$output.='
 				</tbody>
-			
+
 		</table>
 
 		';
@@ -282,7 +282,7 @@ class OrderController extends Controller
 			$coupon_condition = 2;
 			$coupon_number = 0;
 		}
-		
+
 		return view('admin.view_order')->with(compact('order_details','customer','shipping','order_details','coupon_condition','coupon_number','order','order_status'));
 
 	}

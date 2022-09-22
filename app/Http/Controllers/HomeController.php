@@ -103,6 +103,33 @@ class HomeController extends Controller
                                         ->with('category' ,$cate_product);
 
     }
+    public function post_detail(Request $request,$slug){
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+
+        $meta_desc = "Chuyên bán những phụ kiện ,thiết bị game";
+        $meta_keywords = "thiet bi game,phu kien game,game phu kien,game giai tri";
+        $meta_title = "Phụ kiện,máy chơi game chính hãng";
+        $url_canonical = $request->url();
+
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+
+        $details_post = DB::table('tbl_posts')
+//                        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_posts.brand_id')
+//                        ->where('tbl_posts.brand_id',$slug)
+                        ->get();
+        dd($details_post);
+        return view('pages.blog_details',[
+            'slider'=>$slider,
+            'category'=>$cate_product,
+            'brand'=>$brand_product,
+            'meta_desc'=>$meta_desc,
+            'meta_keywords'=>$meta_keywords,
+            'meta_title'=>$meta_title,
+            'url_canonical'=>$url_canonical
+
+        ]);
+    }
     public function contact(Request $request){
 //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
