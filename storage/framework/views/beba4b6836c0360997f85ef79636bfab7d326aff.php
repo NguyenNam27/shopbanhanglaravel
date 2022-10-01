@@ -20,7 +20,7 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                    <input type="text" data-validation="length" data-validation-length="min10" data-validation-error-msg="Làm ơn điền ít nhất 10 ký tự" name="product_name" class="form-control " id="slug" placeholder="Tên danh mục" onkeyup="ChangeToSlug();"> 
+                                    <input type="text" data-validation="length" data-validation-length="min10" data-validation-error-msg="Làm ơn điền ít nhất 10 ký tự" name="product_name" class="form-control " id="slug" placeholder="Tên danh mục" onkeyup="ChangeToSlug();">
                                 </div>
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">SL sản phẩm</label>
@@ -30,7 +30,7 @@
                                     <label for="exampleInputEmail1">Slug</label>
                                     <input type="text" name="product_slug" class="form-control " id="convert_slug" placeholder="Tên danh mục">
                                 </div>
-                                     <div class="form-group">
+                                    <div class="form-group">
                                     <label for="exampleInputEmail1">Giá sản phẩm</label>
                                     <input type="text" data-validation="number" data-validation-error-msg="Làm ơn điền số tiền" name="product_price" class="form-control" id="" placeholder="Tên danh mục">
                                 </div>
@@ -52,7 +52,7 @@
                                         <?php $__currentLoopData = $cate_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($cate->category_id); ?>"><?php echo e($cate->category_name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            
+
                                     </select>
                                 </div>
                                  <div class="form-group">
@@ -61,7 +61,7 @@
                                         <?php $__currentLoopData = $brand_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($brand->brand_id); ?>"><?php echo e($brand->brand_name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            
+
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -69,10 +69,10 @@
                                       <select name="product_status" class="form-control input-sm m-bot15">
                                          <option value="0">Hiển thị</option>
                                             <option value="1">Ẩn</option>
-                                            
+
                                     </select>
                                 </div>
-                               
+
                                 <button type="submit" name="add_product" class="btn btn-info">Thêm sản phẩm</button>
                                 </form>
                             </div>
@@ -82,4 +82,5 @@
 
             </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\shopbanhanglaravel\resources\views/admin/add_product.blade.php ENDPATH**/ ?>
