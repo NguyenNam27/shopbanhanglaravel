@@ -31,11 +31,11 @@
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2>{{$value->product_name}}</h2>
 								<p>Mã ID: {{$value->product_id}}</p>
-								<img src="images/product-details/rating.png" alt="" />
+{{--								<img src="images/product-details/rating.png" alt="" />--}}
 
 								<form action="{{URL::to('/save-cart')}}" method="POST">
 									@csrf
-									<input type="hidden" value="{{$value->product_id}}" class="cart_product_id_{{$value->product_id}}">
+									        <input type="hidden" value="{{$value->product_id}}" class="cart_product_id_{{$value->product_id}}">
 
                                             <input type="hidden" value="{{$value->product_name}}" class="cart_product_name_{{$value->product_id}}">
 

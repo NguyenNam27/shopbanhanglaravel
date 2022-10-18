@@ -3,6 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="d1f85d44-3c12-47ff-b4c3-123918153348" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/manage_order.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/manage_order.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/cart/show_cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/cart/show_cart.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/sanpham/show_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/sanpham/show_details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/3Wqoxu7D2SYZim9OZnYPmLWA7nXW2Oxj0ftjbS1k" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/3rEjjUNEJN2yv617s6mc1EqXzNHxWBDEf26FmDkf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/AKFmqzkCVXkMYKcAI9hFobSa60iGocWjdRlK2dY9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/DoI7NsyGJmKc4Ec8cHHkMGqerZzOGWFjlr6ssrkn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/23ee82d6677e7797c5148f48fb58d1e8e9f01140.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/23ee82d6677e7797c5148f48fb58d1e8e9f01140.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/ab9e894ac2e9db0f7338de468cb9799350b0e068.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/ab9e894ac2e9db0f7338de468cb9799350b0e068.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,6 +208,11 @@
       <workItem from="1663650195122" duration="10989000" />
       <workItem from="1664176541810" duration="9756000" />
       <workItem from="1664356766868" duration="7110000" />
+      <workItem from="1664893899449" duration="16526000" />
+      <workItem from="1665144972373" duration="1984000" />
+      <workItem from="1665590117726" duration="4805000" />
+      <workItem from="1665671324428" duration="601000" />
+      <workItem from="1665672428524" duration="3053000" />
     </task>
     <servers />
   </component>

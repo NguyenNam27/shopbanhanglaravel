@@ -532,7 +532,12 @@
                     $.ajax({
                         url: '{{url('/add-cart-ajax')}}',
                         method: 'POST',
-                        data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token,cart_product_quantity:cart_product_quantity},
+                        data:{cart_product_id:cart_product_id,
+                            cart_product_name:cart_product_name,
+                            cart_product_image:cart_product_image,
+                            cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,
+                            _token:_token,cart_product_quantity:cart_product_quantity
+                        },
                         success:function(){
 
                             swal({

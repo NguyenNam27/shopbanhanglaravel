@@ -30,7 +30,7 @@
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2><?php echo e($value->product_name); ?></h2>
 								<p>Mã ID: <?php echo e($value->product_id); ?></p>
-								<img src="images/product-details/rating.png" alt="" />
+
 
 								<form action="<?php echo e(URL::to('/save-cart')); ?>" method="POST">
 									<?php echo csrf_field(); ?>
