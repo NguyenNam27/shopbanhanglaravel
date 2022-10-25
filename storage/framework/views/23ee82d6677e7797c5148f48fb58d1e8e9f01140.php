@@ -34,7 +34,7 @@
 
 								<form action="<?php echo e(URL::to('/save-cart')); ?>" method="POST">
 									<?php echo csrf_field(); ?>
-									<input type="hidden" value="<?php echo e($value->product_id); ?>" class="cart_product_id_<?php echo e($value->product_id); ?>">
+									        <input type="hidden" value="<?php echo e($value->product_id); ?>" class="cart_product_id_<?php echo e($value->product_id); ?>">
 
                                             <input type="hidden" value="<?php echo e($value->product_name); ?>" class="cart_product_name_<?php echo e($value->product_id); ?>">
 

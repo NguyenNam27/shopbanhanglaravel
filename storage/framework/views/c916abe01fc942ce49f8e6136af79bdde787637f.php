@@ -48,7 +48,6 @@
                 <?php endif; ?>
             </td>
 
-
             <td>
               <a href="<?php echo e(URL::to('/view-order/'.$ord->order_code)); ?>" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-eye text-success text-active"></i></a>
